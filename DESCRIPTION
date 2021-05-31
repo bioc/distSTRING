@@ -1,0 +1,38 @@
+Package: distSTRING
+Type: Package
+Title: distSTRING calculates pairwise distances between all sequences of a DNAStringSet or a AAStringSet
+Version: 0.1.0
+Authors@R: 
+    person(given = "Kristian K",
+           family = "Ullrich",
+           role = c("aut", "cre"),
+           email = "ullrich@evolbio.mpg.de",
+           comment = c(ORCID = "0000-0003-4308-9626"))
+Description: distSTRING calculates pairwise distances between all sequences of
+    a DNAStringSet or a AAStringSet.
+    It uses scoring matrices to be used in these pairwise distance calcualtions
+    which can be adapted to any scoring for DNA or AA characters.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+  R (>= 4.0.0)
+Imports:
+  curl,
+  Biostrings,
+  Rcpp,
+  RcppThread,
+  seqinr,
+  ape
+Suggests:
+  rmarkdown,
+  knitr,
+  devtools,
+  testthat
+LinkingTo: Rcpp, RcppThread
+VignetteBuilder: knitr
+NeedsCompilation: yes
+SystemRequirements: C++11
+URL: https://gitlab.gwdg.de/mpievolbio-it/diststring, https://mpievolbio-it.pages.gwdg.de/diststring/
+BugReports: https://gitlab.gwdg.de/mpievolbio-it/diststring/issues
+RoxygenNote: 7.1.1
