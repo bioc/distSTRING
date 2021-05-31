@@ -82,7 +82,7 @@ dna.dist.bionj <- ape::bionj(as.dist(dna.dist$distSTRING))
 ## creation of the association matrix:
 association <- cbind(aa.dist.bionj$tip.label, aa.dist.bionj$tip.label)
 ## cophyloplot
-cophyloplot(aa.dist.bionj, dna.dist.bionj, assoc = association, length.line=4, space=28, gap=3, rotate=TRUE)
+ape::cophyloplot(aa.dist.bionj, dna.dist.bionj, assoc = association, length.line=4, space=28, gap=3, rotate=TRUE)
 ## calculate pairwise DNA distances based on K80 distance
 dna.dist.K80 <- dnastring2dist(hiv, model = "K80")
 ## calculate pairwise AA distances based on getAAMatrix() function from the alakazam package
