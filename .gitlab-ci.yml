@@ -8,7 +8,7 @@ before_script:
 pages:
   stage: deploy
   script:
-    - R -e "dir(); getwd(); Rcpp::compileAttributes(); devtools::install(); devtools::document(); usethis::use_pkgdown(); sessionInfo(); pkgdown::build_site()"
+    - R -e "dir(); getwd(); Rcpp::compileAttributes(); devtools::install(); sessionInfo(); pkgdown::build_site()"
   artifacts:
     paths:
       - public
