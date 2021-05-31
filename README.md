@@ -68,6 +68,7 @@ build_vignettes = FALSE, dependencies = FALSE)
 ## Quick-guide
 
 ```
+library(distSTRING)
 ## load example sequence data
 data("hiv", package="distSTRING")
 ## calculate pairwise AA distances based on Grantham's distance

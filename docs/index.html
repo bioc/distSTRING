@@ -129,7 +129,8 @@ build_vignettes = FALSE, dependencies = FALSE)
 <div id="quick-guide" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-guide" class="anchor"></a>Quick-guide</h2>
-<pre><code><a href="https://rdrr.io/r/utils/data.html">## load example sequence data
+<pre><code><a href="https://gitlab.gwdg.de/mpievolbio-it/diststring">library(distSTRING)
+## load example sequence data
 data("hiv", package="distSTRING")
 ## calculate pairwise AA distances based on Grantham's distance
 aa.dist &lt;- aastring2dist(cds2aa(hiv), score = granthamMatrix())
