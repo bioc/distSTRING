@@ -16,7 +16,7 @@ data(hiv)
 Example cds sequences from HIV-1 sample 136 patient 1 from Sweden envelope glycoprotein (env) gene, V3 region as \code{DNAStringSet}.
 }
 \examples{
-data("hiv", package="CRBHits")
+data("hiv", package="distSTRING")
 }
 \references{
 Yang et al. (2000) Codon-substitution models for heterogeneous selection pressure at amino acid sites. \emph{Genetics.} \bold{155(1)}, 431-449.

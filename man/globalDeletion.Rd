@@ -13,6 +13,14 @@ globalDeletion(dna)
 This function returns a \code{DNAStringSet} reduced by all
 sites containing any gaps ("-", "+", ".") or missing ("N") sites.
 }
+\examples{
+## define two cds sequences
+cds1 <- Biostrings::DNAString("ATGCAACATTGC")
+cds2 <- Biostrings::DNAString("ATG---CATTGC")
+cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
+ Biostrings::DNAStringSet(cds2))
+globalDeletion(cds1.cds2.aln)
+}
 \author{
 Kristian K Ullrich
 }

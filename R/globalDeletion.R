@@ -4,6 +4,13 @@
 #' sites containing any gaps ("-", "+", ".") or missing ("N") sites.
 #' @importFrom Biostrings consensusMatrix
 #' @param dna \code{DNAStringSet}
+#' @examples
+#' ## define two cds sequences
+#' cds1 <- Biostrings::DNAString("ATGCAACATTGC")
+#' cds2 <- Biostrings::DNAString("ATG---CATTGC")
+#' cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
+#'  Biostrings::DNAStringSet(cds2))
+#' globalDeletion(cds1.cds2.aln)
 #' @export globalDeletion
 #' @author Kristian K Ullrich
 globalDeletion<-function(dna){

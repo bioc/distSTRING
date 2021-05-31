@@ -9,5 +9,5 @@
 #' see \code{\link[Biostrings]{XStringSet-class}}
 #' @keywords datasets
 #' @examples
-#' data("hiv", package="CRBHits")
+#' data("hiv", package="distSTRING")
 "hiv"

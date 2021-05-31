@@ -18,20 +18,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_distSTRING_ab
-Rcpp::NumericVector rcpp_distSTRING_ab(std::string a, std::string b, Rcpp::NumericMatrix scoreMatrix, int nsites);
-RcppExport SEXP _distSTRING_rcpp_distSTRING_ab(SEXP aSEXP, SEXP bSEXP, SEXP scoreMatrixSEXP, SEXP nsitesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type a(aSEXP);
-    Rcpp::traits::input_parameter< std::string >::type b(bSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type scoreMatrix(scoreMatrixSEXP);
-    Rcpp::traits::input_parameter< int >::type nsites(nsitesSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_distSTRING_ab(a, b, scoreMatrix, nsites));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rcpp_pairwiseDeletionAA
 Rcpp::List rcpp_pairwiseDeletionAA(Rcpp::StringVector aavector, int ncores);
 RcppExport SEXP _distSTRING_rcpp_pairwiseDeletionAA(SEXP aavectorSEXP, SEXP ncoresSEXP) {
@@ -59,7 +45,6 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_distSTRING_rcpp_distSTRING", (DL_FUNC) &_distSTRING_rcpp_distSTRING, 3},
-    {"_distSTRING_rcpp_distSTRING_ab", (DL_FUNC) &_distSTRING_rcpp_distSTRING_ab, 4},
     {"_distSTRING_rcpp_pairwiseDeletionAA", (DL_FUNC) &_distSTRING_rcpp_pairwiseDeletionAA, 2},
     {"_distSTRING_rcpp_pairwiseDeletionDNA", (DL_FUNC) &_distSTRING_rcpp_pairwiseDeletionDNA, 2},
     {NULL, NULL, 0}

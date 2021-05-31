@@ -12,14 +12,6 @@ rcpp_distSTRING <- function(dnavector, scoreMatrix, ncores = 1L) {
 
 #' @useDynLib distSTRING, .registration = TRUE
 #' @import Rcpp
-#' @export rcpp_distSTRING_ab
-#' @author Kristian K Ullrich
-rcpp_distSTRING_ab <- function(a, b, scoreMatrix, nsites) {
-    .Call(`_distSTRING_rcpp_distSTRING_ab`, a, b, scoreMatrix, nsites)
-}
-
-#' @useDynLib distSTRING, .registration = TRUE
-#' @import Rcpp
 #' @import RcppThread
 #' @export rcpp_pairwiseDeletionAA
 #' @author Kristian K Ullrich

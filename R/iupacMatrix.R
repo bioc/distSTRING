@@ -13,13 +13,13 @@
 #' data("MySequences", package="distSTRING")
 #' MyScoreMatrix <- iupacMatrix()
 #' distSTRING(as.character(MySequences[1:10]), MyScoreMatrix)
-#' @export granthamMatrix
+#' @export iupacMatrix
 #' @author Kristian K Ullrich
 iupacMatrix<-function(){
     distances<-c(
-      ## A C G T  
-      ## R Y S W K M  
-      ## B D H V   
+      ## A C G T
+      ## R Y S W K M
+      ## B D H V
       ## . - N X
       # A
       0.0, 1.0, 1.0, 1.0,
@@ -114,7 +114,7 @@ iupacMatrix<-function(){
     )
     iupacMatrix<-matrix(distances, ncol=18, nrow=18)
     colnames(iupacMatrix)<-rownames(iupacMatrix)<-c(
-      "A", "C", "G", "T", 
+      "A", "C", "G", "T",
       "R", "Y", "S", "W", "K", "M",
       "B", "D", "H", "V",
       ".", "-", "N", "X")
