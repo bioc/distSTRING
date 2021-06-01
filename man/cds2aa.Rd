@@ -4,10 +4,16 @@
 \alias{cds2aa}
 \title{cds2aa}
 \usage{
-cds2aa(cds)
+cds2aa(cds, shorten = FALSE, frame = 1, framelist = NULL)
 }
 \arguments{
 \item{cds}{\code{DNAStringSet} [mandatory]}
+
+\item{shorten}{shorten all sequences to multiple of three [default: FALSE]}
+
+\item{frame}{indicates the first base of a the first codon [default: 1]}
+
+\item{framelist}{supply vector of frames for each entry [default: NULL]}
 }
 \value{
 \code{AAStringSet}
