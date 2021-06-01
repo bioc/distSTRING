@@ -30,10 +30,10 @@ cds2aa <- function(cds, shorten = FALSE, frame = 1, framelist = NULL){
     names(cds) <- stringr::word(names(cds), 1)
   }
   if(is.null(framelist)){
-    cds <- Biostrings::subseq(cds, frame, unique(Biostrings::width(cds)))
+    cds <- Biostrings::subseq(cds, frame, Biostrings::width(cds))
   }
   if(!is.null(framelist)){
-    cds <- Biostrings::subseq(cds, framelist, unique(Biostrings::width(cds)))
+    cds <- Biostrings::subseq(cds, framelist, Biostrings::width(cds))
   }
   if(shorten){
     cds <- Biostrings::subseq(cds, 1, Biostrings::width(cds) - Biostrings::width(cds) %% 3)
