@@ -1,0 +1,6 @@
+destination: public
+repo:
+  url:
+    home: https://gitlab.gwdg.de/mpievolbio-it/diststring
+    source: https://gitlab.gwdg.de/mpievolbio-it/diststring/blob/master
+    issue: https://gitlab.gwdg.de/mpievolbio-it/diststring/issues
