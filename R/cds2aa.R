@@ -5,8 +5,9 @@
 #' @param shorten shorten all sequences to multiple of three [default: FALSE]
 #' @param frame  indicates the first base of a the first codon [default: 1]
 #' @param framelist  supply vector of frames for each entry [default: NULL]
+#' @param genetic.code The genetic code to use for the translation of codons into Amino Acid letters [default: NULL]
 #' @return \code{AAStringSet}
-#' @importFrom Biostrings DNAString DNAStringSet AAString AAStringSet readDNAStringSet readAAStringSet writeXStringSet width subseq translate
+#' @importFrom Biostrings DNAString DNAStringSet AAString AAStringSet readDNAStringSet readAAStringSet writeXStringSet width subseq translate getGeneticCode GENETIC_CODE GENETIC_CODE_TABLE
 #' @importFrom stringr word
 #' @seealso \code{\link[Biostrings]{XStringSet-class}},
 #' \code{\link[seqinr]{translate}}
@@ -17,10 +18,14 @@
 #' cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
 #'  Biostrings::DNAStringSet(cds2))
 #' cds2aa(cds1.cds2.aln)
+#' ## alternative genetic code
+#' data(woodmouse, package = "ape")
+#' cds2aa(dnabin2dnastring(woodmouse), shorten = TRUE)
+#' cds2aa(dnabin2dnastring(woodmouse), shorten = TRUE, genetic.code = Biostrings::getGeneticCode("2"))
 #' @export cds2aa
 #' @author Kristian K Ullrich
 
-cds2aa <- function(cds, shorten = FALSE, frame = 1, framelist = NULL){
+cds2aa <- function(cds, shorten = FALSE, frame = 1, framelist = NULL, genetic.code = NULL){
   if(class(cds)!="DNAStringSet"){stop("Error: input needs to be a DNAStringSet")}
   if(!frame %in% c(1, 2, 3)){stop("Error: frame needs to be 1 or 2 or 3")}
   if(!is.null(framelist)){
@@ -47,6 +52,10 @@ cds2aa <- function(cds, shorten = FALSE, frame = 1, framelist = NULL){
   #aa <- Biostrings::AAStringSet(unlist(lapply(as.character(cds), function(x) seqinr::c2s(seqinr::translate(seqinr::s2c(x))))))
   cds <- DNAStringSet(gsub("-", "N", cds))
   cds <- DNAStringSet(gsub("X", "N", cds))
+  if(!is.null(genetic.code)){
+    aa <- Biostrings::translate(cds, genetic.code = genetic.code, if.fuzzy.codon = "X")
+    return(aa)
+  }
   aa <- Biostrings::translate(cds, if.fuzzy.codon = "X")
   return(aa)
 }

@@ -117,7 +117,7 @@
     <p>This function translates a <code>DNAStringSet</code> into an <code>AAStringSet</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cds2aa</span><span class='op'>(</span><span class='va'>cds</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cds2aa</span><span class='op'>(</span><span class='va'>cds</span>, shorten <span class='op'>=</span> <span class='cn'>FALSE</span>, frame <span class='op'>=</span> <span class='fl'>1</span>, framelist <span class='op'>=</span> <span class='cn'>NULL</span>, genetic.code <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -125,6 +125,22 @@
     <tr>
       <th>cds</th>
       <td><p><code>DNAStringSet</code> [mandatory]</p></td>
+    </tr>
+    <tr>
+      <th>shorten</th>
+      <td><p>shorten all sequences to multiple of three [default: FALSE]</p></td>
+    </tr>
+    <tr>
+      <th>frame</th>
+      <td><p>indicates the first base of a the first codon [default: 1]</p></td>
+    </tr>
+    <tr>
+      <th>framelist</th>
+      <td><p>supply vector of frames for each entry [default: NULL]</p></td>
+    </tr>
+    <tr>
+      <th>genetic.code</th>
+      <td><p>The genetic code to use for the translation of codons into Amino Acid letters [default: NULL]</p></td>
     </tr>
     </table>
 
@@ -149,7 +165,35 @@
 </div><div class='output co'>#&gt; AAStringSet object of length 2:
 #&gt;     width seq
 #&gt; [1]     4 MQHC
-#&gt; [2]     4 MXHC</div></pre>
+#&gt; [2]     4 MXHC</div><div class='input'><span class='co'>## alternative genetic code</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>woodmouse</span>, package <span class='op'>=</span> <span class='st'>"ape"</span><span class='op'>)</span>
+<span class='fu'>cds2aa</span><span class='op'>(</span><span class='fu'><a href='dnabin2dnastring.html'>dnabin2dnastring</a></span><span class='op'>(</span><span class='va'>woodmouse</span><span class='op'>)</span>, shorten <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; AAStringSet object of length 15:
+#&gt;      width seq                                              names               
+#&gt;  [1]   321 XRKTHPLLKXISHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTL No305
+#&gt;  [2]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTL No304
+#&gt;  [3]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTL No306
+#&gt;  [4]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQIX No0906S
+#&gt;  [5]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTX No0908S
+#&gt;  ...   ... ...
+#&gt; [11]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTX No1007S
+#&gt; [12]   321 XXXXXXXXXXXXXXXIDLPAPSN...LLPFLHTSKQRSLIFRPITQTX No1114S
+#&gt; [13]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTX No1202S
+#&gt; [14]   321 IRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTX No1206S
+#&gt; [15]   321 XRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLIFRPITQTX No1208S</div><div class='input'><span class='fu'>cds2aa</span><span class='op'>(</span><span class='fu'><a href='dnabin2dnastring.html'>dnabin2dnastring</a></span><span class='op'>(</span><span class='va'>woodmouse</span><span class='op'>)</span>, shorten <span class='op'>=</span> <span class='cn'>TRUE</span>, genetic.code <span class='op'>=</span> <span class='fu'>Biostrings</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Biostrings/man/GENETIC_CODE.html'>getGeneticCode</a></span><span class='op'>(</span><span class='st'>"2"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; AAStringSet object of length 15:
+#&gt;      width seq                                              names               
+#&gt;  [1]   321 XRKTHPLLKXISHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTL No305
+#&gt;  [2]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTL No304
+#&gt;  [3]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTL No306
+#&gt;  [4]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQMX No0906S
+#&gt;  [5]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTX No0908S
+#&gt;  ...   ... ...
+#&gt; [11]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTX No1007S
+#&gt; [12]   321 XXXXXXXXXXXXXXXIDLPAPSN...LLPFLHTSKQRSLMFRPITQTX No1114S
+#&gt; [13]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTX No1202S
+#&gt; [14]   321 MRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTX No1206S
+#&gt; [15]   321 XRKTHPLLKIINHSFIDLPAPSN...LLPFLHTSKQRSLMFRPITQTX No1208S</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
