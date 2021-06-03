@@ -28,3 +28,12 @@ rcpp_pairwiseDeletionDNA <- function(dnavector, ncores = 1L) {
     .Call(`_distSTRING_rcpp_pairwiseDeletionDNA`, dnavector, ncores)
 }
 
+#' @useDynLib distSTRING, .registration = TRUE
+#' @import Rcpp
+#' @import RcppThread
+#' @export rcpp_vol
+#' @author Kristian K Ullrich
+rcpp_vol <- function(inputMatrix, ncores = 1L) {
+    .Call(`_distSTRING_rcpp_vol`, inputMatrix, ncores)
+}
+

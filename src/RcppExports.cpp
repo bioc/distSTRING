@@ -42,11 +42,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_vol
+Rcpp::NumericVector rcpp_vol(Rcpp::NumericMatrix inputMatrix, int ncores);
+RcppExport SEXP _distSTRING_rcpp_vol(SEXP inputMatrixSEXP, SEXP ncoresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type inputMatrix(inputMatrixSEXP);
+    Rcpp::traits::input_parameter< int >::type ncores(ncoresSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_vol(inputMatrix, ncores));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_distSTRING_rcpp_distSTRING", (DL_FUNC) &_distSTRING_rcpp_distSTRING, 3},
     {"_distSTRING_rcpp_pairwiseDeletionAA", (DL_FUNC) &_distSTRING_rcpp_pairwiseDeletionAA, 2},
     {"_distSTRING_rcpp_pairwiseDeletionDNA", (DL_FUNC) &_distSTRING_rcpp_pairwiseDeletionDNA, 2},
+    {"_distSTRING_rcpp_vol", (DL_FUNC) &_distSTRING_rcpp_vol, 2},
     {NULL, NULL, 0}
 };
 
