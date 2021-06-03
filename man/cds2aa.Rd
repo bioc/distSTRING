@@ -15,13 +15,15 @@ cds2aa(cds, shorten = FALSE, frame = 1, framelist = NULL, genetic.code = NULL)
 
 \item{framelist}{supply vector of frames for each entry [default: NULL]}
 
-\item{genetic.code}{The genetic code to use for the translation of codons into Amino Acid letters [default: NULL]}
+\item{genetic.code}{The genetic code to use for the translation of codons
+into Amino Acid letters [default: NULL]}
 }
 \value{
 \code{AAStringSet}
 }
 \description{
-This function translates a \code{DNAStringSet} into an \code{AAStringSet}.
+This function translates a \code{DNAStringSet} into an
+\code{AAStringSet}.
 }
 \examples{
 ## define two cds sequences
@@ -31,9 +33,10 @@ cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
  Biostrings::DNAStringSet(cds2))
 cds2aa(cds1.cds2.aln)
 ## alternative genetic code
-data(woodmouse, package = "ape")
-cds2aa(dnabin2dnastring(woodmouse), shorten = TRUE)
-cds2aa(dnabin2dnastring(woodmouse), shorten = TRUE, genetic.code = Biostrings::getGeneticCode("2"))
+data(woodmouse, package="ape")
+cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE)
+cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE,
+genetic.code=Biostrings::getGeneticCode("2"))
 }
 \seealso{
 \code{\link[Biostrings]{XStringSet-class}},

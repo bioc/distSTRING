@@ -13,14 +13,14 @@ defined as from \code{Grantham 1974}.
 (see \url{https://link.springer.com/article/10.1007/s00335-017-9704-9})
 }
 \examples{
-data("hiv", package="distSTRING")
+granthamMatrix()
 }
 \references{
 Grantham R. (1974). Amino Acid Difference Formula
 to Help Explain Protein Evolution. \emph{Science}, \bold{185(4154)}, 862-864.
 }
 \seealso{
-\link[distSTRING]{distSTRING}, \link[ape]{dist.dna}
+\link[distSTRING]{aastring2dist}, \link[ape]{dist.dna}
 }
 \author{
 Kristian K Ullrich

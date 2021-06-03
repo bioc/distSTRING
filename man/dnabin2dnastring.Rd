@@ -13,15 +13,18 @@ dnabin2dnastring(dnabin)
 An object of class \code{DNAStringSet}
 }
 \description{
-This function converts an \code{ape} \code{DNAbin} into \code{DNAStringSet}.
+This function converts an \code{ape} \code{DNAbin} into
+\code{DNAStringSet}.
 }
 \examples{
-data(woodmouse, package = "ape")
+data(woodmouse, package="ape")
 ## convert into DNAStringSet
 dnabin2dnastring(woodmouse)
 }
 \seealso{
-\code{\link[seqinr]{as.alignment}} \code{\link[ape]{as.DNAbin.alignment}} \code{\link[Biostrings]{DNAStringSet}}
+\code{\link[seqinr]{as.alignment}}
+\code{\link[ape]{as.DNAbin.alignment}}
+\code{\link[Biostrings]{DNAStringSet}}
 }
 \author{
 Kristian K Ullrich

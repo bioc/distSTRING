@@ -76,23 +76,56 @@ build_vignettes = FALSE, dependencies = FALSE)
 library(distSTRING)
 ## load example sequence data
 data("hiv", package="distSTRING")
+
 ## calculate pairwise AA distances based on Grantham's distance
-aa.dist <- aastring2dist(cds2aa(hiv), score = granthamMatrix())
+aa.dist <- aastring2dist(cds2aa(hiv), score=granthamMatrix())
+head(aa.dist$distSTRING)
+
 ## create and plot bionj tree
 aa.dist.bionj <- ape::bionj(as.dist(aa.dist$distSTRING))
+plot(aa.dist.bionj)
+
 ## calculate pairwise DNA distances based on IUPAC distance
-dna.dist <- dnastring2dist(hiv, score = iupacMatrix())
+dna.dist <- dnastring2dist(hiv, score=iupacMatrix())
+
 ## create and plot bionj tree
 dna.dist.bionj <- ape::bionj(as.dist(dna.dist$distSTRING))
+head(dna.dist$distSTRING)
+
 ## creation of the association matrix:
 association <- cbind(aa.dist.bionj$tip.label, aa.dist.bionj$tip.label)
+
 ## cophyloplot
-ape::cophyloplot(aa.dist.bionj, dna.dist.bionj, assoc = association, length.line=4, space=28, gap=3, rotate=TRUE)
+ape::cophyloplot(aa.dist.bionj,
+                 dna.dist.bionj,
+                 assoc=association,
+                 length.line=4,
+                 space=28,
+                 gap=3,
+                 rotate=TRUE)
+
 ## calculate pairwise DNA distances based on K80 distance
-dna.dist.K80 <- dnastring2dist(hiv, model = "K80")
+dna.dist.K80 <- dnastring2dist(hiv, model="K80")
+
 ## calculate pairwise AA distances based on getAAMatrix() function from the alakazam package
 data("AAMatrix", package="distSTRING")
-aa.dist <- aastring2dist(cds2aa(hiv), score = AAMatrix)
+aa.dist <- aastring2dist(cds2aa(hiv), score=AAMatrix)
+
+## example how to calculate all pairwise kaks values given a MSA
+hiv_kaks <- dnastring2kaks(hiv, model="Li")
+hiv_kaks <- dnastring2kaks(hiv, model="NG86")
+
+## codon plot - sites under possible positive selection
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+hiv.xy <- codonmat2xy(dnastring2codonmat(hiv))
+hiv.xy %>% select(Codon,SynMean,NonSynMean,IndelMean) %>%
+  gather(variable, values, -Codon) %>% 
+  ggplot(aes(x=Codon, y=values)) + 
+    geom_line(aes(colour=factor(variable))) + 
+    geom_point(aes(colour=factor(variable))) + 
+    ggtitle("HIV-1 sample 136 patient 1 from Sweden envelope glycoprotein (env) gene")
 ```
 
 ## License

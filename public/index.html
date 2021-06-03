@@ -15,7 +15,8 @@
 <meta property="og:description" content="distSTRING calculates pairwise distances between all sequences of
     a DNAStringSet or a AAStringSet.
     It uses scoring matrices to be used in these pairwise distance calcualtions
-    which can be adapted to any scoring for DNA or AA characters.">
+    which can be adapted to any scoring for DNA or AA characters. E.g. by using
+    literal distances distSTRING calcualtes pairwise IUPAC distances.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -48,6 +49,9 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -140,23 +144,56 @@ build_vignettes = FALSE, dependencies = FALSE)
 <pre><code><a href="https://gitlab.gwdg.de/mpievolbio-it/diststring">library(distSTRING)
 ## load example sequence data
 data("hiv", package="distSTRING")
+
 ## calculate pairwise AA distances based on Grantham's distance
-aa.dist &lt;- aastring2dist(cds2aa(hiv), score = granthamMatrix())
+aa.dist &lt;- aastring2dist(cds2aa(hiv), score=granthamMatrix())
+head(aa.dist$distSTRING)
+
 ## create and plot bionj tree
 aa.dist.bionj &lt;- ape::bionj(as.dist(aa.dist$distSTRING))
+plot(aa.dist.bionj)
+
 ## calculate pairwise DNA distances based on IUPAC distance
-dna.dist &lt;- dnastring2dist(hiv, score = iupacMatrix())
+dna.dist &lt;- dnastring2dist(hiv, score=iupacMatrix())
+
 ## create and plot bionj tree
 dna.dist.bionj &lt;- ape::bionj(as.dist(dna.dist$distSTRING))
+head(dna.dist$distSTRING)
+
 ## creation of the association matrix:
 association &lt;- cbind(aa.dist.bionj$tip.label, aa.dist.bionj$tip.label)
+
 ## cophyloplot
-ape::cophyloplot(aa.dist.bionj, dna.dist.bionj, assoc = association, length.line=4, space=28, gap=3, rotate=TRUE)
+ape::cophyloplot(aa.dist.bionj,
+                 dna.dist.bionj,
+                 assoc=association,
+                 length.line=4,
+                 space=28,
+                 gap=3,
+                 rotate=TRUE)
+
 ## calculate pairwise DNA distances based on K80 distance
-dna.dist.K80 &lt;- dnastring2dist(hiv, model = "K80")
+dna.dist.K80 &lt;- dnastring2dist(hiv, model="K80")
+
 ## calculate pairwise AA distances based on getAAMatrix() function from the alakazam package
 data("AAMatrix", package="distSTRING")
-aa.dist &lt;- aastring2dist(cds2aa(hiv), score = AAMatrix)</a></code></pre>
+aa.dist &lt;- aastring2dist(cds2aa(hiv), score=AAMatrix)
+
+## example how to calculate all pairwise kaks values given a MSA
+hiv_kaks &lt;- dnastring2kaks(hiv, model="Li")
+hiv_kaks &lt;- dnastring2kaks(hiv, model="NG86")
+
+## codon plot - sites under possible positive selection
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+hiv.xy &lt;- codonmat2xy(dnastring2codonmat(hiv))
+hiv.xy %&gt;% select(Codon,SynMean,NonSynMean,IndelMean) %&gt;%
+  gather(variable, values, -Codon) %&gt;% 
+  ggplot(aes(x=Codon, y=values)) + 
+    geom_line(aes(colour=factor(variable))) + 
+    geom_point(aes(colour=factor(variable))) + 
+    ggtitle("HIV-1 sample 136 patient 1 from Sweden envelope glycoprotein (env) gene")</a></code></pre>
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">

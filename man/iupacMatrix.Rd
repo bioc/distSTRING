@@ -13,9 +13,7 @@ defined as literal distance obtained from \code{Chang et al. 2017}.
 (see \url{https://link.springer.com/article/10.1007/s00335-017-9704-9})
 }
 \examples{
-data("MySequences", package="distSTRING")
-MyScoreMatrix <- iupacMatrix()
-distSTRING(as.character(MySequences[1:10]), MyScoreMatrix)
+iupacMatrix()
 }
 \references{
 Chang, P. L., Kopania, E., Keeble, S., Sarver, B. A., Larson,
@@ -24,7 +22,7 @@ wild-derived inbred strains of mice improves power to link phenotype and
 genotype. \emph{Mammalian genome}, \bold{28(9-10)}, 416-425.
 }
 \seealso{
-\link[distSTRING]{distSTRING}, \link[ape]{dist.dna}
+\link[distSTRING]{dnastring2dist}, \link[ape]{dist.dna}
 }
 \author{
 Kristian K Ullrich

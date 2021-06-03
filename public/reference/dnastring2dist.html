@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="dnastring2dist — dnastring2dist" />
-<meta property="og:description" content="This function calculates pairwise distances for all combinations of a DNAStringSet." />
+<meta property="og:description" content="This function calculates pairwise distances for all
+combinations of a DNAStringSet." />
 
 
 
@@ -87,6 +88,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -114,7 +118,8 @@
     </div>
 
     <div class="ref-description">
-    <p>This function calculates pairwise distances for all combinations of a <code>DNAStringSet</code>.</p>
+    <p>This function calculates pairwise distances for all
+combinations of a <code>DNAStringSet</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>dna</span>, model <span class='op'>=</span> <span class='st'>"IUPAC"</span>, threads <span class='op'>=</span> <span class='fl'>1</span>, score <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -128,7 +133,8 @@
     </tr>
     <tr>
       <th>model</th>
-      <td><p>specify model either "IUPAC" or any model from <code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>ape::dist.dna</a></code> [default: IUPAC]</p></td>
+      <td><p>specify model either "IUPAC" or any model from
+<code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>ape::dist.dna</a></code> [default: IUPAC]</p></td>
     </tr>
     <tr>
       <th>threads</th>
@@ -136,17 +142,20 @@
     </tr>
     <tr>
       <th>score</th>
-      <td><p><code>scoringMatrix</code> use scoring matrix to calculate distances [default: NULL]</p></td>
+      <td><p><code>scoringMatrix</code> use scoring matrix to calculate
+distances [default: NULL]</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other <code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>ape::dist.dna</a></code> parameters (see <code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>dist.dna</a></code>)</p></td>
+      <td><p>other <code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>ape::dist.dna</a></code> parameters
+(see <code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>dist.dna</a></code>)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame of pairwise distance values <code>distSTRING</code> and sites used <code>sitesUsed</code></p>
+    <p>A data.frame of pairwise distance values <code>distSTRING</code> and
+sites used <code>sitesUsed</code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>dist.dna</a></code></p></div>
@@ -157,7 +166,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## load example sequence data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"hiv"</span>, package<span class='op'>=</span><span class='st'>"distSTRING"</span><span class='op'>)</span>
-<span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>hiv</span>, model <span class='op'>=</span> <span class='st'>"IUPAC"</span><span class='op'>)</span>
+<span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>hiv</span>, model<span class='op'>=</span><span class='st'>"IUPAC"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $distSTRING
 #&gt;            U68496     U68497     U68498     U68499     U68500     U68501
 #&gt; U68496 0.00000000 0.03296703 0.07326007 0.07692308 0.10256410 0.09523810
@@ -231,7 +240,7 @@
 #&gt; U68506    273    273    273
 #&gt; U68507    273    273    273
 #&gt; U68508    273    273    273
-#&gt; </div><div class='input'><span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>hiv</span>, model <span class='op'>=</span> <span class='st'>"K80"</span><span class='op'>)</span>
+#&gt; </div><div class='input'><span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>hiv</span>, model<span class='op'>=</span><span class='st'>"K80"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $distSTRING
 #&gt;            U68496     U68497     U68498     U68499     U68500    U68501
 #&gt; U68496 0.00000000 0.03381189 0.07731910 0.08135801 0.11058044 0.1022214
@@ -306,7 +315,7 @@
 #&gt; U68507    273    273    273
 #&gt; U68508    273    273    273
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"woodmouse"</span>, package<span class='op'>=</span><span class='st'>"ape"</span><span class='op'>)</span>
-<span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='fu'><a href='dnabin2dnastring.html'>dnabin2dnastring</a></span><span class='op'>(</span><span class='va'>woodmouse</span><span class='op'>)</span>, score <span class='op'>=</span> <span class='fu'><a href='iupacMatrix.html'>iupacMatrix</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='fu'><a href='dnabin2dnastring.html'>dnabin2dnastring</a></span><span class='op'>(</span><span class='va'>woodmouse</span><span class='op'>)</span>, score<span class='op'>=</span><span class='fu'><a href='iupacMatrix.html'>iupacMatrix</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $distSTRING
 #&gt;              No305       No304       No306     No0906S     No0908S     No0909S
 #&gt; No305   0.00000000 0.016684046 0.013541667 0.018789144 0.016701461 0.016701461
@@ -390,10 +399,81 @@
 #&gt; No1202S     961     961     915     961     961     958
 #&gt; No1206S     961     961     915     961     961     958
 #&gt; No1208S     958     958     915     958     958     958
-#&gt; </div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>hiv</span>, model <span class='op'>=</span> <span class='st'>"IUPAC"</span>, threads <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+#&gt; </div><div class='input'><span class='fu'>dnastring2dist</span><span class='op'>(</span><span class='va'>hiv</span>, model <span class='op'>=</span> <span class='st'>"IUPAC"</span>, threads <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $distSTRING
+#&gt;            U68496     U68497     U68498     U68499     U68500     U68501
+#&gt; U68496 0.00000000 0.03296703 0.07326007 0.07692308 0.10256410 0.09523810
+#&gt; U68497 0.03296703 0.00000000 0.08791209 0.08424908 0.10989011 0.10989011
+#&gt; U68498 0.07326007 0.08791209 0.00000000 0.05128205 0.06959707 0.07326007
+#&gt; U68499 0.07692308 0.08424908 0.05128205 0.00000000 0.04029304 0.09523810
+#&gt; U68500 0.10256410 0.10989011 0.06959707 0.04029304 0.00000000 0.11355311
+#&gt; U68501 0.09523810 0.10989011 0.07326007 0.09523810 0.11355311 0.00000000
+#&gt; U68502 0.13553114 0.14285714 0.10256410 0.10622711 0.13186813 0.10622711
+#&gt; U68503 0.11721612 0.11721612 0.09890110 0.10622711 0.11721612 0.11355311
+#&gt; U68504 0.10989011 0.12454212 0.09157509 0.09157509 0.11355311 0.09890110
+#&gt; U68505 0.10989011 0.11721612 0.08424908 0.08791209 0.10989011 0.09890110
+#&gt; U68506 0.10622711 0.12454212 0.10256410 0.10256410 0.12087912 0.10256410
+#&gt; U68507 0.12454212 0.13919414 0.08424908 0.09523810 0.11355311 0.10622711
+#&gt; U68508 0.15018315 0.15018315 0.12454212 0.11355311 0.11355311 0.12454212
+#&gt;           U68502    U68503     U68504     U68505     U68506     U68507
+#&gt; U68496 0.1355311 0.1172161 0.10989011 0.10989011 0.10622711 0.12454212
+#&gt; U68497 0.1428571 0.1172161 0.12454212 0.11721612 0.12454212 0.13919414
+#&gt; U68498 0.1025641 0.0989011 0.09157509 0.08424908 0.10256410 0.08424908
+#&gt; U68499 0.1062271 0.1062271 0.09157509 0.08791209 0.10256410 0.09523810
+#&gt; U68500 0.1318681 0.1172161 0.11355311 0.10989011 0.12087912 0.11355311
+#&gt; U68501 0.1062271 0.1135531 0.09890110 0.09890110 0.10256410 0.10622711
+#&gt; U68502 0.0000000 0.1208791 0.10622711 0.09890110 0.12087912 0.10622711
+#&gt; U68503 0.1208791 0.0000000 0.10989011 0.10256410 0.12087912 0.10256410
+#&gt; U68504 0.1062271 0.1098901 0.00000000 0.02930403 0.02930403 0.05494505
+#&gt; U68505 0.0989011 0.1025641 0.02930403 0.00000000 0.05128205 0.04029304
+#&gt; U68506 0.1208791 0.1208791 0.02930403 0.05128205 0.00000000 0.05494505
+#&gt; U68507 0.1062271 0.1025641 0.05494505 0.04029304 0.05494505 0.00000000
+#&gt; U68508 0.1282051 0.1172161 0.10256410 0.09157509 0.11355311 0.09157509
+#&gt;            U68508
+#&gt; U68496 0.15018315
+#&gt; U68497 0.15018315
+#&gt; U68498 0.12454212
+#&gt; U68499 0.11355311
+#&gt; U68500 0.11355311
+#&gt; U68501 0.12454212
+#&gt; U68502 0.12820513
+#&gt; U68503 0.11721612
+#&gt; U68504 0.10256410
+#&gt; U68505 0.09157509
+#&gt; U68506 0.11355311
+#&gt; U68507 0.09157509
+#&gt; U68508 0.00000000
+#&gt; 
+#&gt; $sitesUsed
+#&gt;        U68496 U68497 U68498 U68499 U68500 U68501 U68502 U68503 U68504 U68505
+#&gt; U68496    273    273    273    273    273    273    273    273    273    273
+#&gt; U68497    273    273    273    273    273    273    273    273    273    273
+#&gt; U68498    273    273    273    273    273    273    273    273    273    273
+#&gt; U68499    273    273    273    273    273    273    273    273    273    273
+#&gt; U68500    273    273    273    273    273    273    273    273    273    273
+#&gt; U68501    273    273    273    273    273    273    273    273    273    273
+#&gt; U68502    273    273    273    273    273    273    273    273    273    273
+#&gt; U68503    273    273    273    273    273    273    273    273    273    273
+#&gt; U68504    273    273    273    273    273    273    273    273    273    273
+#&gt; U68505    273    273    273    273    273    273    273    273    273    273
+#&gt; U68506    273    273    273    273    273    273    273    273    273    273
+#&gt; U68507    273    273    273    273    273    273    273    273    273    273
+#&gt; U68508    273    273    273    273    273    273    273    273    273    273
+#&gt;        U68506 U68507 U68508
+#&gt; U68496    273    273    273
+#&gt; U68497    273    273    273
+#&gt; U68498    273    273    273
+#&gt; U68499    273    273    273
+#&gt; U68500    273    273    273
+#&gt; U68501    273    273    273
+#&gt; U68502    273    273    273
+#&gt; U68503    273    273    273
+#&gt; U68504    273    273    273
+#&gt; U68505    273    273    273
+#&gt; U68506    273    273    273
+#&gt; U68507    273    273    273
+#&gt; U68508    273    273    273
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

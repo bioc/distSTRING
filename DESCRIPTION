@@ -11,19 +11,30 @@ Authors@R:
 Description: distSTRING calculates pairwise distances between all sequences of
     a DNAStringSet or a AAStringSet.
     It uses scoring matrices to be used in these pairwise distance calcualtions
-    which can be adapted to any scoring for DNA or AA characters.
+    which can be adapted to any scoring for DNA or AA characters. E.g. by using
+    literal distances distSTRING calcualtes pairwise IUPAC distances.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
+biocViews: Alignment, Sequencing, Genetics
 Depends:
-  R (>= 4.0.0)
+  R (>= 4.1.0)
 Imports:
-  curl,
+  stats,
+  parallel,
   Biostrings,
   Rcpp,
   RcppThread,
   seqinr,
-  ape
+  ape,
+  stringi,
+  stringr,
+  foreach,
+  doParallel,
+  rlang,
+  tidyr,
+  tibble,
+  dplyr
 Suggests:
   rmarkdown,
   knitr,

@@ -4,6 +4,12 @@
 #' @useDynLib distSTRING, .registration = TRUE
 #' @import Rcpp
 #' @import RcppThread
+#' @title rcpp_distSTRING
+#' @name rcpp_distSTRING
+#' @description calcualtes pairwise distances using a score matrix
+#' @param dnavector StringVector
+#' @param scoreMatrix NumericMatrix
+#' @param ncores number of cores
 #' @export rcpp_distSTRING
 #' @author Kristian K Ullrich
 rcpp_distSTRING <- function(dnavector, scoreMatrix, ncores = 1L) {
@@ -13,6 +19,11 @@ rcpp_distSTRING <- function(dnavector, scoreMatrix, ncores = 1L) {
 #' @useDynLib distSTRING, .registration = TRUE
 #' @import Rcpp
 #' @import RcppThread
+#' @title rcpp_pairwiseDeletionAA
+#' @name rcpp_pairwiseDeletionAA
+#' @description returns number of AA sites used
+#' @param aavector StringVector
+#' @param ncores number of cores
 #' @export rcpp_pairwiseDeletionAA
 #' @author Kristian K Ullrich
 rcpp_pairwiseDeletionAA <- function(aavector, ncores = 1L) {
@@ -22,18 +33,14 @@ rcpp_pairwiseDeletionAA <- function(aavector, ncores = 1L) {
 #' @useDynLib distSTRING, .registration = TRUE
 #' @import Rcpp
 #' @import RcppThread
+#' @title rcpp_pairwiseDeletionDNA
+#' @name rcpp_pairwiseDeletionNDA
+#' @description returns number of DNA sites used
+#' @param dnavector StringVector
+#' @param ncores number of cores
 #' @export rcpp_pairwiseDeletionDNA
 #' @author Kristian K Ullrich
 rcpp_pairwiseDeletionDNA <- function(dnavector, ncores = 1L) {
     .Call(`_distSTRING_rcpp_pairwiseDeletionDNA`, dnavector, ncores)
-}
-
-#' @useDynLib distSTRING, .registration = TRUE
-#' @import Rcpp
-#' @import RcppThread
-#' @export rcpp_vol
-#' @author Kristian K Ullrich
-rcpp_vol <- function(inputMatrix, ncores = 1L) {
-    .Call(`_distSTRING_rcpp_vol`, inputMatrix, ncores)
 }
 

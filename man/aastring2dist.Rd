@@ -11,18 +11,21 @@ aastring2dist(aa, threads = 1, score = NULL)
 
 \item{threads}{number of parallel threads [default: 1]}
 
-\item{score}{\code{scoringMatrix} use scoring matrix to calculate distances [default: NULL]}
+\item{score}{\code{scoringMatrix} use scoring matrix to calculate distances
+[default: NULL]}
 }
 \value{
-A data.frame of pairwise distance values \code{distSTRING} and sites used \code{sitesUsed}
+A data.frame of pairwise distance values \code{distSTRING} and sites
+used \code{sitesUsed}
 }
 \description{
-This function calculates pairwise distances for all combinations of a \code{AAStringSet}.
+This function calculates pairwise distances for all combinations
+of a \code{AAStringSet}.
 }
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-aastring2dist(cds2aa(hiv), score = granthamMatrix())
+aastring2dist(cds2aa(hiv), score=granthamMatrix())
 }
 \seealso{
 \code{\link[distSTRING]{dnastring2dist}}

@@ -18,6 +18,9 @@ data(AAMatrix)
 data("AAMatrix", package="distSTRING")
 }
 \references{
-Gupta N, Vander Heiden J, Uduman M, Gadala-Maria D, Yaari G, Kleinstein S (2015) Change-O: a toolkit for analyzing large-scale B cell immunoglobulin repertoire sequencing data. \emph{Bioinformatics.} \bold{31(20)}, 3356-3358.
+Gupta N, Vander Heiden J, Uduman M, Gadala-Maria D, Yaari G,
+Kleinstein S (2015) Change-O: a toolkit for analyzing large-scale B cell
+immunoglobulin repertoire sequencing data. \emph{Bioinformatics.}
+\bold{31(20)}, 3356-3358.
 }
 \keyword{datasets}

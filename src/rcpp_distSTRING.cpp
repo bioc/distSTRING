@@ -9,6 +9,12 @@ using namespace Rcpp;
 //' @useDynLib distSTRING, .registration = TRUE
 //' @import Rcpp
 //' @import RcppThread
+//' @title rcpp_distSTRING
+//' @name rcpp_distSTRING
+//' @description calcualtes pairwise distances using a score matrix
+//' @param dnavector StringVector
+//' @param scoreMatrix NumericMatrix
+//' @param ncores number of cores
 //' @export rcpp_distSTRING
 //' @author Kristian K Ullrich
 // [[Rcpp::export]]

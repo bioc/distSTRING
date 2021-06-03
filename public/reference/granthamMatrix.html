@@ -90,6 +90,9 @@ defined as from Grantham 1974.
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -132,14 +135,61 @@ defined as from <code>Grantham 1974</code>.
 to Help Explain Protein Evolution. <em>Science</em>, <b>185(4154)</b>, 862-864.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>distSTRING, <a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>dist.dna</a></p></div>
+    <div class='dont-index'><p><a href='aastring2dist.html'>aastring2dist</a>, <a href='https://rdrr.io/pkg/ape/man/dist.dna.html'>dist.dna</a></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Kristian K Ullrich</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"hiv"</span>, package<span class='op'>=</span><span class='st'>"distSTRING"</span><span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>granthamMatrix</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     S   R   L   P   T   A   V   G   I   F   Y   C   H   Q   N   K   D   E   M
+#&gt; S   0 110 145  74  58  99 124  56 142 155 144 112  89  68  46 121  65  80 135
+#&gt; R 110   0 102 103  71 112  96 125  97  97  77 180  29  43  86  26  96  54  91
+#&gt; L 145 102   0  98  92  96  32 138   5  22  36 198  99 113 153 107 172 138  15
+#&gt; P  74 103  98   0  38  27  68  42  95  14 110 169  77  76  91 103 108  93  87
+#&gt; T  58  71  92  38   0  58  69  59  89 103  92 149  47  42  65  78  85  65  81
+#&gt; A  99 112  96  27  58   0  64  60  94  13 112 195  86  91 111 106 126 107  84
+#&gt; V 124  96  32  68  69  64   0 109  29  50  55 192  84  96 133  97 152 121  21
+#&gt; G  56 125 138  42  59  60 109   0 135 153 147 159  98  87  80 127  94  98 127
+#&gt; I 142  97   5  95  89  94  29 135   0  21  33 198  94 109 149 102 168 134  10
+#&gt; F 155  97  22 114 103 113  50 153  21   0  22 205 100 116 158 102 177 140  28
+#&gt; Y 144  77  36 110  92 112  55 147  33  22   0 194  83  99 143  85 160 122  36
+#&gt; C 112 180 198 169 149 195 192 159 198 205 194   0 174 154 139 202 154 170 196
+#&gt; H  89  29  99  77  47  86  84  98  94 100  83 174   0  24  68  32  81  40  87
+#&gt; Q  68  43 113  76  42  91  96  87 109 116  99 154  24   0  46  53  61  29 101
+#&gt; N  46  86 153  91  65 111 133  80 149 158 143 139  68  46   0  94  23  42 142
+#&gt; K 121  26 107 103  78 106  97 127 102 102  85 202  32  53  94   0 101  56  95
+#&gt; D  65  96 172 108  85 126 152  94 168 177 160 154  81  61  23 101   0  45 160
+#&gt; E  80  54 138  93  65 107 121  98 134 140 122 170  40  29  42  56  45   0 126
+#&gt; M 135  91  15  87  81  84  21 127  10  28  36 196  87 101 142  95 160 126   0
+#&gt; W 177 101  61 147 128 148  88 184  61  40  37 215 115 130 174 110 181 152  67
+#&gt; .  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+#&gt; -  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+#&gt; X  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+#&gt;     W  .  -  X
+#&gt; S 177 -1 -1 -1
+#&gt; R 101 -1 -1 -1
+#&gt; L  61 -1 -1 -1
+#&gt; P 147 -1 -1 -1
+#&gt; T 128 -1 -1 -1
+#&gt; A 148 -1 -1 -1
+#&gt; V  88 -1 -1 -1
+#&gt; G 184 -1 -1 -1
+#&gt; I  61 -1 -1 -1
+#&gt; F  40 -1 -1 -1
+#&gt; Y  37 -1 -1 -1
+#&gt; C 215 -1 -1 -1
+#&gt; H 115 -1 -1 -1
+#&gt; Q 130 -1 -1 -1
+#&gt; N 174 -1 -1 -1
+#&gt; K 110 -1 -1 -1
+#&gt; D 181 -1 -1 -1
+#&gt; E 152 -1 -1 -1
+#&gt; M  67 -1 -1 -1
+#&gt; W   0 -1 -1 -1
+#&gt; .  -1 -1 -1 -1
+#&gt; -  -1 -1 -1 -1
+#&gt; X  -1 -1 -1 -1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

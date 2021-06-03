@@ -9,6 +9,11 @@ using namespace Rcpp;
 //' @useDynLib distSTRING, .registration = TRUE
 //' @import Rcpp
 //' @import RcppThread
+//' @title rcpp_pairwiseDeletionAA
+//' @name rcpp_pairwiseDeletionAA
+//' @description returns number of AA sites used
+//' @param aavector StringVector
+//' @param ncores number of cores
 //' @export rcpp_pairwiseDeletionAA
 //' @author Kristian K Ullrich
 // [[Rcpp::export]]

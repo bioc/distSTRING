@@ -9,30 +9,33 @@ dnastring2dist(dna, model = "IUPAC", threads = 1, score = NULL, ...)
 \arguments{
 \item{dna}{\code{DNAStringSet} [mandatory]}
 
-\item{model}{specify model either "IUPAC" or any model from \code{ape::dist.dna} [default: IUPAC]}
+\item{model}{specify model either "IUPAC" or any model from
+\code{ape::dist.dna} [default: IUPAC]}
 
 \item{threads}{number of parallel threads [default: 1]}
 
-\item{score}{\code{scoringMatrix} use scoring matrix to calculate distances [default: NULL]}
+\item{score}{\code{scoringMatrix} use scoring matrix to calculate
+distances [default: NULL]}
 
-\item{...}{other \code{ape::dist.dna} parameters (see \code{\link[ape]{dist.dna}})}
+\item{...}{other \code{ape::dist.dna} parameters
+(see \code{\link[ape]{dist.dna}})}
 }
 \value{
-A data.frame of pairwise distance values \code{distSTRING} and sites used \code{sitesUsed}
+A data.frame of pairwise distance values \code{distSTRING} and
+sites used \code{sitesUsed}
 }
 \description{
-This function calculates pairwise distances for all combinations of a \code{DNAStringSet}.
+This function calculates pairwise distances for all
+combinations of a \code{DNAStringSet}.
 }
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-dnastring2dist(hiv, model = "IUPAC")
-dnastring2dist(hiv, model = "K80")
+dnastring2dist(hiv, model="IUPAC")
+dnastring2dist(hiv, model="K80")
 data("woodmouse", package="ape")
-dnastring2dist(dnabin2dnastring(woodmouse), score = iupacMatrix())
-\dontrun{
+dnastring2dist(dnabin2dnastring(woodmouse), score=iupacMatrix())
 dnastring2dist(hiv, model = "IUPAC", threads = 2)
-}
 }
 \seealso{
 \code{\link[ape]{dist.dna}}

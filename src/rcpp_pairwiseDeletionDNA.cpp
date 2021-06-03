@@ -9,6 +9,11 @@ using namespace Rcpp;
 //' @useDynLib distSTRING, .registration = TRUE
 //' @import Rcpp
 //' @import RcppThread
+//' @title rcpp_pairwiseDeletionDNA
+//' @name rcpp_pairwiseDeletionNDA
+//' @description returns number of DNA sites used
+//' @param dnavector StringVector
+//' @param ncores number of cores
 //' @export rcpp_pairwiseDeletionDNA
 //' @author Kristian K Ullrich
 // [[Rcpp::export]]
