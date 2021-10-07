@@ -78,7 +78,7 @@ BiocManager::install("Biostrings")
 ```
 library(devtools)
 install_gitlab("mpievolbio-it/diststring", host = "https://gitlab.gwdg.de",
-build_vignettes = TURE, dependencies = TRUE)
+build_vignettes = TRUE, dependencies = TRUE)
 #install_github("kullrich/distSTRING", build_vignettes = TRUE, dependencies = TRUE)
 ```
 
