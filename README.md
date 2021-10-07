@@ -36,18 +36,30 @@ sudo yum install libcurl-devel openssl-devel libxml2-devel mesa-libGLU-devel lib
 - [RcppThread](https://cran.r-project.org/web/packages/RcppThread/index.html)
 - [devtools](https://cran.r-project.org/web/packages/devtools/index.html)
 - [testthat](https://cran.r-project.org/web/packages/testthat/index.html)
-- [curl](https://cran.r-project.org/web/packages/curl/index.html)
-- [seqinr](https://cran.r-project.org/web/packages/seqinr/index.html)
 - [ape](https://cran.r-project.org/web/packages/ape/index.html)
+- [doParallel](https://cran.r-project.org/web/packages/doParallel/index.html)
+- [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html)
+- [foreach](https://cran.r-project.org/web/packages/foreach/index.html)
+- [rlang](https://cran.r-project.org/web/packages/rlang/index.html)
+- [seqinr](https://cran.r-project.org/web/packages/seqinr/index.html)
+- [tibble](https://cran.r-project.org/web/packages/tibble/index.html)
+- [tidyr](https://cran.r-project.org/web/packages/tidyr/index.html)
+- [stringi](https://cran.r-project.org/web/packages/stringi/index.html)
 
 ```
 install.packages("Rcpp")
 install.packages("RcppThread")
 install.packages("devtools")
 install.packages("testthat")
-install.packages("curl")
-install.packages("seqinr")
 install.packages("ape")
+install.packages("doParallel")
+install.packages("dplyr")
+install.packages("foreach")
+install.packages("rlang")
+install.packages("seqinr")
+install.packages("tibble")
+install.packages("tidyr")
+install.packages("stringi")
 ```
 
 ### install packages from [Bioconductor](https://www.bioconductor.org/)
@@ -66,8 +78,8 @@ BiocManager::install("Biostrings")
 ```
 library(devtools)
 install_gitlab("mpievolbio-it/diststring", host = "https://gitlab.gwdg.de",
-build_vignettes = FALSE, dependencies = FALSE)
-#install_github("kullrich/distSTRING", build_vignettes = FALSE, dependencies = FALSE)
+build_vignettes = TURE, dependencies = TRUE)
+#install_github("kullrich/distSTRING", build_vignettes = TRUE, dependencies = TRUE)
 ```
 
 ## Quick-guide

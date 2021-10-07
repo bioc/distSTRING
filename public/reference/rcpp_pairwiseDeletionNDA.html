@@ -87,6 +87,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/V01distSTRINGBasicVignette.html">distSTRING Basic Vignette</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -135,10 +147,52 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>list</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Kristian K Ullrich</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## load example sequence data</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"woodmouse"</span>, package<span class='op'>=</span><span class='st'>"ape"</span><span class='op'>)</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='va'>woodmouse</span> |&gt; <span class='fu'><a href='dnabin2dnastring.html'>dnabin2dnastring</a></span><span class='op'>(</span><span class='op'>)</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>rcpp_pairwiseDeletionDNA</span><span class='op'>(</span>dnavector<span class='op'>=</span><span class='va'>w</span>, ncores<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $sitesUsed
+#&gt;         No305 No304 No306 No0906S No0908S No0909S No0910S No0912S No0913S
+#&gt; No305     962   959   960     958     958     958     958     958     958
+#&gt; No304     959   962   960     959     959     959     959     959     959
+#&gt; No306     960   960   963     959     959     959     959     959     959
+#&gt; No0906S   958   959   959     961     961     961     961     961     961
+#&gt; No0908S   958   959   959     961     961     961     961     961     961
+#&gt; No0909S   958   959   959     961     961     961     961     961     961
+#&gt; No0910S   958   959   959     961     961     961     961     961     961
+#&gt; No0912S   958   959   959     961     961     961     961     961     961
+#&gt; No0913S   958   959   959     961     961     961     961     961     961
+#&gt; No1103S   958   959   959     961     961     961     961     961     961
+#&gt; No1007S   958   959   959     961     961     961     961     961     961
+#&gt; No1114S   914   913   913     915     915     915     915     915     915
+#&gt; No1202S   958   959   959     961     961     961     961     961     961
+#&gt; No1206S   958   959   959     961     961     961     961     961     961
+#&gt; No1208S   956   956   956     958     958     958     958     958     958
+#&gt;         No1103S No1007S No1114S No1202S No1206S No1208S
+#&gt; No305       958     958     914     958     958     956
+#&gt; No304       959     959     913     959     959     956
+#&gt; No306       959     959     913     959     959     956
+#&gt; No0906S     961     961     915     961     961     958
+#&gt; No0908S     961     961     915     961     961     958
+#&gt; No0909S     961     961     915     961     961     958
+#&gt; No0910S     961     961     915     961     961     958
+#&gt; No0912S     961     961     915     961     961     958
+#&gt; No0913S     961     961     915     961     961     958
+#&gt; No1103S     961     961     915     961     961     958
+#&gt; No1007S     961     961     915     961     961     958
+#&gt; No1114S     915     915     915     915     915     915
+#&gt; No1202S     961     961     915     961     961     958
+#&gt; No1206S     961     961     915     961     961     958
+#&gt; No1208S     958     958     915     958     958     958
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
