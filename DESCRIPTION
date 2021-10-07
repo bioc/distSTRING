@@ -1,6 +1,8 @@
 Package: distSTRING
 Type: Package
-Title: distSTRING calculates pairwise distances between all sequences of a DNAStringSet or a AAStringSet
+Title: distSTRING calculates pairwise distances between all sequences of a
+    DNAStringSet or a AAStringSet using a custom score matrix and conducts
+    codon based analysis
 Version: 0.99.0
 Authors@R: 
     person(given = "Kristian K",
@@ -9,10 +11,11 @@ Authors@R:
            email = "ullrich@evolbio.mpg.de",
            comment = c(ORCID = "0000-0003-4308-9626"))
 Description: distSTRING calculates pairwise distances between all sequences of
-    a DNAStringSet or a AAStringSet.
-    It uses scoring matrices to be used in these pairwise distance calcualtions
-    which can be adapted to any scoring for DNA or AA characters. E.g. by using
-    literal distances distSTRING calcualtes pairwise IUPAC distances.
+    a DNAStringSet or a AAStringSet using a custom score matrix and conducts
+    codon based analysis. It uses scoring matrices to be used in these pairwise
+    distance calcualtions which can be adapted to any scoring for DNA or AA
+    characters. E.g. by using literal distances distSTRING calcualtes pairwise
+    IUPAC distances.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
