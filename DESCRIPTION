@@ -1,7 +1,7 @@
 Package: distSTRING
 Type: Package
 Title: distSTRING calculates pairwise distances between all sequences of a DNAStringSet or a AAStringSet
-Version: 0.1.0
+Version: 0.99.0
 Authors@R: 
     person(given = "Kristian K",
            family = "Ullrich",
