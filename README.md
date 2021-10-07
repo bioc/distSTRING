@@ -90,7 +90,7 @@ library(distSTRING)
 data("hiv", package="distSTRING")
 
 ## calculate pairwise AA distances based on Grantham's distance
-aa.dist <- aastring2dist(cds2aa(hiv), score=granthamMatrix())
+aa.dist <- hiv |> cds2aa() |> aastring2dist(score=granthamMatrix())
 head(aa.dist$distSTRING)
 
 ## create and plot bionj tree
@@ -98,11 +98,11 @@ aa.dist.bionj <- ape::bionj(as.dist(aa.dist$distSTRING))
 plot(aa.dist.bionj)
 
 ## calculate pairwise DNA distances based on IUPAC distance
-dna.dist <- dnastring2dist(hiv, score=iupacMatrix())
+dna.dist <- hiv |> dnastring2dist(model="IUPAC")
+head(dna.dist$distSTRING)
 
 ## create and plot bionj tree
 dna.dist.bionj <- ape::bionj(as.dist(dna.dist$distSTRING))
-head(dna.dist$distSTRING)
 
 ## creation of the association matrix:
 association <- cbind(aa.dist.bionj$tip.label, aa.dist.bionj$tip.label)
@@ -117,22 +117,26 @@ ape::cophyloplot(aa.dist.bionj,
                  rotate=TRUE)
 
 ## calculate pairwise DNA distances based on K80 distance
-dna.dist.K80 <- dnastring2dist(hiv, model="K80")
+dna.dist.K80 <- hiv |> dnastring2dist(model="K80")
+head(dna.dist.K80$distSTRING)
 
 ## calculate pairwise AA distances based on getAAMatrix() function from the alakazam package
 data("AAMatrix", package="distSTRING")
-aa.dist <- aastring2dist(cds2aa(hiv), score=AAMatrix)
+aa.dist <- hiv |> cds2aa() |> aastring2dist(score=AAMatrix)
 
 ## example how to calculate all pairwise kaks values given a MSA
-hiv_kaks <- dnastring2kaks(hiv, model="Li")
-hiv_kaks <- dnastring2kaks(hiv, model="NG86")
+hiv_kaks_Li <- hiv|> dnastring2kaks(model="Li")
+head(hiv_kaks_Li)
+
+hiv_kaks_NG86 <- hiv |> dnastring2kaks(model="NG86")
+head(hiv_kaks_NG86)
 
 ## codon plot - sites under possible positive selection
 library(tidyr)
 library(dplyr)
 library(ggplot2)
-hiv.xy <- codonmat2xy(dnastring2codonmat(hiv))
-hiv.xy %>% select(Codon,SynMean,NonSynMean,IndelMean) %>%
+hiv_xy <- hiv |> dnastring2codonmat() |> codonmat2xy()
+hiv_xy %>% select(Codon,SynMean,NonSynMean,IndelMean) %>%
   gather(variable, values, -Codon) %>% 
   ggplot(aes(x=Codon, y=values)) + 
     geom_line(aes(colour=factor(variable))) + 
