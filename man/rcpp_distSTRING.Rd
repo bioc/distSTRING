@@ -13,8 +13,16 @@ rcpp_distSTRING(dnavector, scoreMatrix, ncores = 1L)
 
 \item{ncores}{number of cores}
 }
+\value{
+list
+}
 \description{
 calcualtes pairwise distances using a score matrix
+}
+\examples{
+## load example sequence data
+data("hiv", package="distSTRING")
+rcpp_distSTRING(dnavector=as.character(hiv), scoreMatrix=iupacMatrix())
 }
 \author{
 Kristian K Ullrich

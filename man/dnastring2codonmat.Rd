@@ -4,7 +4,7 @@
 \alias{dnastring2codonmat}
 \title{dnastring2codonmat}
 \usage{
-dnastring2codonmat(cds, shorten = FALSE, frame = 1)
+dnastring2codonmat(cds, shorten = FALSE, frame = 1, framelist = NULL)
 }
 \arguments{
 \item{cds}{\code{DNAStringSet} [mandatory]}
@@ -12,6 +12,8 @@ dnastring2codonmat(cds, shorten = FALSE, frame = 1)
 \item{shorten}{shorten all sequences to multiple of three [default: FALSE]}
 
 \item{frame}{indicates the first base of a the first codon [default: 1]}
+
+\item{framelist}{supply vector of frames for each entry [default: NULL]}
 }
 \value{
 An object of class \code{alignment} which is a list with the
@@ -32,9 +34,16 @@ This function converts a \code{DNAStringSet} into an
 cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 cds2 <- Biostrings::DNAString("ATG---CATTGC")
 cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
- Biostrings::DNAStringSet(cds2))
+    Biostrings::DNAStringSet(cds2))
 ## convert into alignment
-dnastring2codonmat(cds1.cds2.aln)
+#dnastring2codonmat(cds1.cds2.aln)
+cds1.cds2.aln |> dnastring2codonmat()
+## use frame 2 and shorten to circumvent multiple of three error
+cds1 <- Biostrings::DNAString("-ATGCAACATTGC-")
+cds2 <- Biostrings::DNAString("-ATG---CATTGC-")
+cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
+    Biostrings::DNAStringSet(cds2))
+cds1.cds2.aln |> dnastring2codonmat(frame=2, shorten=TRUE)
 }
 \seealso{
 \code{\link[seqinr]{as.alignment}}

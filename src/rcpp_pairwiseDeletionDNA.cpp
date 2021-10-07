@@ -12,8 +12,14 @@ using namespace Rcpp;
 //' @title rcpp_pairwiseDeletionDNA
 //' @name rcpp_pairwiseDeletionNDA
 //' @description returns number of DNA sites used
+//' @return list
 //' @param dnavector StringVector
 //' @param ncores number of cores
+//' @examples
+//' ## load example sequence data
+//' data("woodmouse", package="ape")
+//' w <- woodmouse |> dnabin2dnastring() |> as.character()
+//' rcpp_pairwiseDeletionDNA(dnavector=w, ncores=1)
 //' @export rcpp_pairwiseDeletionDNA
 //' @author Kristian K Ullrich
 // [[Rcpp::export]]

@@ -11,8 +11,17 @@ rcpp_pairwiseDeletionAA(aavector, ncores = 1L)
 
 \item{ncores}{number of cores}
 }
+\value{
+list
+}
 \description{
 returns number of AA sites used
+}
+\examples{
+## load example sequence data
+data("hiv", package="distSTRING")
+h <- hiv |> cds2aa() |> as.character()
+rcpp_pairwiseDeletionAA(aavector=h, ncores=1)
 }
 \author{
 Kristian K Ullrich

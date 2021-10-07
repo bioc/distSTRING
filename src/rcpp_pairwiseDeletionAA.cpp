@@ -12,8 +12,14 @@ using namespace Rcpp;
 //' @title rcpp_pairwiseDeletionAA
 //' @name rcpp_pairwiseDeletionAA
 //' @description returns number of AA sites used
+//' @return list
 //' @param aavector StringVector
 //' @param ncores number of cores
+//' @examples
+//' ## load example sequence data
+//' data("hiv", package="distSTRING")
+//' h <- hiv |> cds2aa() |> as.character()
+//' rcpp_pairwiseDeletionAA(aavector=h, ncores=1)
 //' @export rcpp_pairwiseDeletionAA
 //' @author Kristian K Ullrich
 // [[Rcpp::export]]

@@ -15,16 +15,16 @@
 #' cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 #' cds2 <- Biostrings::DNAString("ATG---CATTGC")
 #' cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
-#'  Biostrings::DNAStringSet(cds2))
+#'     Biostrings::DNAStringSet(cds2))
 #' ## convert into alignment
-#' dnastring2dnabin(cds1.cds2.aln)
+#' #dnastring2dnabin(cds1.cds2.aln)
+#' cds1.cds2.aln |> dnastring2dnabin()
 #' @export dnastring2dnabin
 #' @author Kristian K Ullrich
 
 dnastring2dnabin <- function(dna){
-    if(class(dna)!="DNAStringSet"){
-        stop("Error: input needs to be a DNAStringSet")
-    }
+    stopifnot("Error: input needs to be a DNAStringSet"=
+        is(dna, "DNAStringSet"))
     alignment.nb <- length(dna)
     alignment.nam <- names(dna)
     alignment.seq <- tolower(as.character(dna))

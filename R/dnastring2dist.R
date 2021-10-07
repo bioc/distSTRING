@@ -20,11 +20,15 @@
 #' @examples
 #' ## load example sequence data
 #' data("hiv", package="distSTRING")
-#' dnastring2dist(hiv, model="IUPAC")
-#' dnastring2dist(hiv, model="K80")
+#' #dnastring2dist(hiv, model="IUPAC")
+#' hiv |> dnastring2dist(model="IUPAC")
+#' #dnastring2dist(hiv, model="K80")
+#' hiv |> dnastring2dist(model="K80")
 #' data("woodmouse", package="ape")
-#' dnastring2dist(dnabin2dnastring(woodmouse), score=iupacMatrix())
-#' dnastring2dist(hiv, model = "IUPAC", threads = 2)
+#' #dnastring2dist(dnabin2dnastring(woodmouse), score=iupacMatrix())
+#' woodmouse |> dnabin2dnastring() |> dnastring2dist()
+#' #dnastring2dist(hiv, model = "IUPAC", threads = 2)
+#' hiv |> dnastring2dist(model = "IUPAC", threads = 2)
 #' @export dnastring2dist
 #' @author Kristian K Ullrich
 
@@ -33,35 +37,36 @@ dnastring2dist <- function(dna,
     threads = 1,
     score = NULL,
     ...){
-    if(class(dna) != "DNAStringSet"){
-        stop("Error: Input needs to be DNAStringSet")
-    }
-    if(is.null(score) & !model %in%
-        c("IUPAC", "raw", "N", "TS", "TV", "JC69", "K80", "F81", "K81",
-        "F84", "BH87", "T92", "TN93", "GG95", "logdet", "paralin",
-        "indel", "indelblock")){
-            stop("Error: either choose model 'IUPAC' or '?ape::dist.dna'")
-        }
+    stopifnot("Error: Input needs to be DNAStringSet"= is(dna, "DNAStringSet"))
     if(!is.null(score)){
         OUT <- rcpp_distSTRING(dnavector = as.character(dna),
             scoreMatrix = score, ncores = threads)
         OUT$distSTRING <- as.data.frame(OUT$distSTRING)
         OUT$sitesUsed <- as.data.frame(OUT$sitesUsed)
     }
-    if(is.null(score) & model == "IUPAC"){
-        OUT <- rcpp_distSTRING(dnavector = as.character(dna),
-            scoreMatrix=iupacMatrix(), ncores=threads)
-        OUT$distSTRING <- as.data.frame(OUT$distSTRING)
-        OUT$sitesUsed <- as.data.frame(OUT$sitesUsed)
-    }
-    if(is.null(score) & model != "IUPAC"){
-        distSTRING_ <- as.matrix(ape::dist.dna(x=dnastring2dnabin(dna),
-            model=model, ...))
-        sitesUsed_ <- rcpp_pairwiseDeletionDNA(dnavector=as.character(dna),
-            ncores=threads)
-        OUT <- list(distSTRING = as.data.frame(distSTRING_))
-        OUT <- append(OUT, sitesUsed_)
-        OUT$sitesUsed <- as.data.frame(OUT$sitesUsed)
+    if(is.null(score)){
+        stopifnot("Error: either choose model 'IUPAC' or '?ape::dist.dna'"=
+            model %in%
+            c("IUPAC", "raw", "N", "TS", "TV", "JC69", "K80", "F81",
+            "K81","F84", "BH87", "T92", "TN93", "GG95", "logdet",
+            "paralin", "indel", "indelblock"))
+        if(model == "IUPAC"){
+            OUT <- rcpp_distSTRING(dnavector = as.character(dna),
+                scoreMatrix=iupacMatrix(), ncores=threads)
+            OUT$distSTRING <- as.data.frame(OUT$distSTRING)
+            OUT$sitesUsed <- as.data.frame(OUT$sitesUsed)
+        }
+        if(model != "IUPAC"){
+            distSTRING_ <- as.matrix(ape::dist.dna(
+                x=distSTRING::dnastring2dnabin(dna),
+                model=model, ...))
+            sitesUsed_ <- rcpp_pairwiseDeletionDNA(
+                dnavector=as.character(dna),
+                ncores=threads)
+            OUT <- list(distSTRING = as.data.frame(distSTRING_))
+            OUT <- append(OUT, sitesUsed_)
+            OUT$sitesUsed <- as.data.frame(OUT$sitesUsed)
+        }
     }
     return(OUT)
 }

@@ -15,6 +15,9 @@ subString(x, s, e)
 
 \item{e}{end vector}
 }
+\value{
+subsequence of an \code{Biostrings} object
+}
 \description{
 This function gets a subsequence from a \code{DNAString},
 \code{RNAString}, \code{AAString}, \code{BString}, \code{DNAStringSet},
@@ -26,7 +29,7 @@ object from the \code{Biostrings} package.
 cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 cds2 <- Biostrings::DNAString("ATG---CATTGC")
 cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
- Biostrings::DNAStringSet(cds2))
+    Biostrings::DNAStringSet(cds2))
 subString(cds1.cds2.aln, c(1,7), c(3,12))
 }
 \seealso{

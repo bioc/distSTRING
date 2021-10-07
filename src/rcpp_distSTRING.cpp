@@ -12,9 +12,14 @@ using namespace Rcpp;
 //' @title rcpp_distSTRING
 //' @name rcpp_distSTRING
 //' @description calcualtes pairwise distances using a score matrix
+//' @return list
 //' @param dnavector StringVector
 //' @param scoreMatrix NumericMatrix
 //' @param ncores number of cores
+//' @examples
+//' ## load example sequence data
+//' data("hiv", package="distSTRING")
+//' rcpp_distSTRING(dnavector=as.character(hiv), scoreMatrix=iupacMatrix())
 //' @export rcpp_distSTRING
 //' @author Kristian K Ullrich
 // [[Rcpp::export]]

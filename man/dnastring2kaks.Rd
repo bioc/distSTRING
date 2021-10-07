@@ -24,9 +24,12 @@ a \code{DNAStringSet}.
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-dnastring2kaks(hiv, model="Li")
-dnastring2kaks(hiv, model="NG86")
-dnastring2kaks(hiv, model="NG86", threads=2)
+#dnastring2kaks(hiv, model="Li")
+hiv |> dnastring2kaks(model="Li")
+#dnastring2kaks(hiv, model="NG86")
+hiv |> dnastring2kaks(model="NG86")
+#dnastring2kaks(hiv, model="NG86", threads=2)
+hiv |> dnastring2kaks(model="NG86", threads=2)
 }
 \references{
 Nei and Gojobori. (1986) Simple methods for estimating the

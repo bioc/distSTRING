@@ -128,6 +128,10 @@ hiv.xy %>% select(Codon,SynMean,NonSynMean,IndelMean) %>%
     ggtitle("HIV-1 sample 136 patient 1 from Sweden envelope glycoprotein (env) gene")
 ```
 
+## TODO
+
+- codonmat2pnps : alternative translation tables
+
 ## License
 
 MIT (see LICENSE)

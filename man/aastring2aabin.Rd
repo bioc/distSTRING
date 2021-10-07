@@ -21,9 +21,10 @@ This function converts a \code{AAStringSet} into an \code{ape}
 cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 cds2 <- Biostrings::DNAString("ATG---CATTGC")
 cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
- Biostrings::DNAStringSet(cds2))
+    Biostrings::DNAStringSet(cds2))
 ## convert into alignment
-aastring2aabin(cds2aa(cds1.cds2.aln))
+#aastring2aabin(cds2aa(cds1.cds2.aln))
+cds1.cds2.aln |> cds2aa() |> aastring2aabin()
 }
 \seealso{
 \code{\link[seqinr]{as.alignment}}

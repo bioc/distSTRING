@@ -14,7 +14,8 @@
 #' @examples
 #' data(woodmouse, package="ape")
 #' ## convert into DNAStringSet
-#' dnabin2dnastring(woodmouse)
+#' #dnabin2dnastring(woodmouse)
+#' woodmouse |> dnabin2dnastring()
 #' @export dnabin2dnastring
 #' @author Kristian K Ullrich
 

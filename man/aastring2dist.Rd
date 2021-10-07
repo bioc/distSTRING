@@ -25,7 +25,8 @@ of a \code{AAStringSet}.
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-aastring2dist(cds2aa(hiv), score=granthamMatrix())
+#aastring2dist(cds2aa(hiv), score=granthamMatrix())
+hiv |> cds2aa() |> aastring2dist(score=granthamMatrix())
 }
 \seealso{
 \code{\link[distSTRING]{dnastring2dist}}

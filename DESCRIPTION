@@ -16,25 +16,26 @@ Description: distSTRING calculates pairwise distances between all sequences of
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
-biocViews: Alignment, Sequencing, Genetics
+biocViews: Alignment, Sequencing, Genetics, GO
 Depends:
-  R (>= 4.0.0)
+  R (>= 4.1.0)
 Imports:
-  stats,
-  parallel,
-  Biostrings,
   Rcpp,
   RcppThread,
-  seqinr,
+  Biostrings,
   ape,
-  stringi,
-  stringr,
-  foreach,
   doParallel,
+  dplyr,
+  foreach,
+  methods,
+  parallel,
   rlang,
-  tidyr,
+  seqinr,
+  stringr,
   tibble,
-  dplyr
+  tidyr,
+  stats,
+  stringi
 Suggests:
   rmarkdown,
   knitr,
@@ -46,4 +47,4 @@ NeedsCompilation: yes
 SystemRequirements: C++11
 URL: https://gitlab.gwdg.de/mpievolbio-it/diststring, https://mpievolbio-it.pages.gwdg.de/diststring/
 BugReports: https://gitlab.gwdg.de/mpievolbio-it/diststring/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

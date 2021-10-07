@@ -20,26 +20,27 @@
 #' cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 #' cds2 <- Biostrings::DNAString("ATG---CATTGC")
 #' cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
-#'  Biostrings::DNAStringSet(cds2))
-#' cds2aa(cds1.cds2.aln)
+#'     Biostrings::DNAStringSet(cds2))
+#' #cds2aa(cds1.cds2.aln)
+#' cds1.cds2.aln |> cds2aa()
 #' ## alternative genetic code
 #' data(woodmouse, package="ape")
-#' cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE)
-#' cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE,
+#' #cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE)
+#' woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE)
+#' #cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE,
+#' woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE,
 #' genetic.code=Biostrings::getGeneticCode("2"))
 #' @export cds2aa
 #' @author Kristian K Ullrich
 
 cds2aa <- function(cds, shorten=FALSE, frame=1, framelist=NULL,
     genetic.code=NULL){
-    if(class(cds)!="DNAStringSet"){
-        stop("Error: input needs to be a DNAStringSet")
-    }
-    if(!frame %in% c(1, 2, 3)){stop("Error: frame needs to be 1 or 2 or 3")}
+    stopifnot("Error: input needs to be a DNAStringSet"= is(cds,
+        "DNAStringSet"))
+    stopifnot("Error: frame needs to be 1 or 2 or 3"= frame %in% c(1, 2, 3))
     if(!is.null(framelist)){
-        if(length(framelist) != length(cds)){
-            stop("Error: framelist needs to be of equal length as cds")
-        }
+        stopifnot("Error: framelist needs to be of equal length as cds"=
+            length(framelist) != length(cds))
     }
     if(!is.null(names(cds))){
         names(cds) <- stringr::word(names(cds), 1)
@@ -59,8 +60,8 @@ cds2aa <- function(cds, shorten=FALSE, frame=1, framelist=NULL,
         cds_not_multiple_of_three <- cds[cds_not_multiple_of_three.idx]
         cds <- cds[-cds_not_multiple_of_three.idx]
     }
-    cds <- DNAStringSet(gsub("-", "N", cds))
-    cds <- DNAStringSet(gsub("X", "N", cds))
+    cds <- Biostrings::DNAStringSet(gsub("-", "N", cds))
+    cds <- Biostrings::DNAStringSet(gsub("X", "N", cds))
     if(!is.null(genetic.code)){
         aa <- Biostrings::translate(cds, genetic.code=genetic.code,
                                     if.fuzzy.codon="X")

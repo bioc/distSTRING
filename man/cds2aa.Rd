@@ -30,12 +30,15 @@ This function translates a \code{DNAStringSet} into an
 cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 cds2 <- Biostrings::DNAString("ATG---CATTGC")
 cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
- Biostrings::DNAStringSet(cds2))
-cds2aa(cds1.cds2.aln)
+    Biostrings::DNAStringSet(cds2))
+#cds2aa(cds1.cds2.aln)
+cds1.cds2.aln |> cds2aa()
 ## alternative genetic code
 data(woodmouse, package="ape")
-cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE)
-cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE,
+#cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE)
+woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE)
+#cds2aa(dnabin2dnastring(woodmouse), shorten=TRUE,
+woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE,
 genetic.code=Biostrings::getGeneticCode("2"))
 }
 \seealso{

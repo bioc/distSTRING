@@ -11,21 +11,24 @@
 #' @importFrom Biostrings DNAString DNAStringSet AAString AAStringSet
 #' readDNAStringSet readAAStringSet writeXStringSet width subseq
 #' pairwiseAlignment
+#' @importFrom methods is
 #' @seealso \code{\link[distSTRING]{dnastring2dist}}
 #' @examples
 #' ## load example sequence data
 #' data("hiv", package="distSTRING")
-#' aastring2dist(cds2aa(hiv), score=granthamMatrix())
+#' #aastring2dist(cds2aa(hiv), score=granthamMatrix())
+#' hiv |> cds2aa() |> aastring2dist(score=granthamMatrix())
 #' @export aastring2dist
 #' @author Kristian K Ullrich
 
 aastring2dist <- function(aa,
     threads = 1,
     score = NULL){
-    if(class(aa) != "AAStringSet"){stop("Error: Input needs to be AAStringSet")}
-    if(is.null(score)){stop("Error: set score matrix e.g 'granthamMatrix()'")}
-    OUT <- rcpp_distSTRING(dnavector=as.character(aa), scoreMatrix=score,
-        ncores=threads)
+    stopifnot("Error: input needs to be a AAStringSet"=
+        methods::is(aa, "AAStringSet"))
+    stopifnot("Error: set score matrix e.g 'granthamMatrix()'"= !is.null(score))
+    OUT <- distSTRING::rcpp_distSTRING(dnavector=as.character(aa),
+        scoreMatrix=score, ncores=threads)
     OUT$distSTRING <- as.data.frame(OUT$distSTRING)
     OUT$sitesUsed <- as.data.frame(OUT$sitesUsed)
     return(OUT)

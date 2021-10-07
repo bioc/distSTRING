@@ -6,9 +6,12 @@
 \usage{
 iupacMatrix()
 }
+\value{
+\code{matrix}
+}
 \description{
 This function creates a \code{iupacMatrix} object to be used
-with the \code{distSTRING} function. By default, the iupac matrix is
+with the \code{distSTRING} function. By default,the iupac matrix is
 defined as literal distance obtained from \code{Chang et al. 2017}.
 (see \url{https://link.springer.com/article/10.1007/s00335-017-9704-9})
 }
@@ -16,13 +19,13 @@ defined as literal distance obtained from \code{Chang et al. 2017}.
 iupacMatrix()
 }
 \references{
-Chang, P. L., Kopania, E., Keeble, S., Sarver, B. A., Larson,
-E., Orth, A., ... & Dean, M. D. (2017). Whole exome sequencing of
+Chang,P. L.,Kopania,E.,Keeble,S.,Sarver,B. A.,Larson,
+E.,Orth,A.,... & Dean,M. D. (2017). Whole exome sequencing of
 wild-derived inbred strains of mice improves power to link phenotype and
-genotype. \emph{Mammalian genome}, \bold{28(9-10)}, 416-425.
+genotype. \emph{Mammalian genome},\bold{28(9-10)},416-425.
 }
 \seealso{
-\link[distSTRING]{dnastring2dist}, \link[ape]{dist.dna}
+\link[distSTRING]{dnastring2dist},\link[ape]{dist.dna}
 }
 \author{
 Kristian K Ullrich

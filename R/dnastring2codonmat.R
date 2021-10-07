@@ -5,6 +5,7 @@
 #' @param cds \code{DNAStringSet} [mandatory]
 #' @param shorten shorten all sequences to multiple of three [default: FALSE]
 #' @param frame  indicates the first base of a the first codon [default: 1]
+#' @param framelist  supply vector of frames for each entry [default: NULL]
 #' @return An object of class \code{alignment} which is a list with the
 #' following components:\cr
 #' \code{nb} the number of aligned sequences\cr
@@ -22,24 +23,38 @@
 #' cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 #' cds2 <- Biostrings::DNAString("ATG---CATTGC")
 #' cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
-#'  Biostrings::DNAStringSet(cds2))
+#'     Biostrings::DNAStringSet(cds2))
 #' ## convert into alignment
-#' dnastring2codonmat(cds1.cds2.aln)
+#' #dnastring2codonmat(cds1.cds2.aln)
+#' cds1.cds2.aln |> dnastring2codonmat()
+#' ## use frame 2 and shorten to circumvent multiple of three error
+#' cds1 <- Biostrings::DNAString("-ATGCAACATTGC-")
+#' cds2 <- Biostrings::DNAString("-ATG---CATTGC-")
+#' cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
+#'     Biostrings::DNAStringSet(cds2))
+#' cds1.cds2.aln |> dnastring2codonmat(frame=2, shorten=TRUE)
 #' @export dnastring2codonmat
 #' @author Kristian K Ullrich
 
-dnastring2codonmat <- function(cds, shorten = FALSE, frame = 1){
-    if(class(cds)!="DNAStringSet"){
-        stop("Error: input needs to be a DNAStringSet")
+dnastring2codonmat <- function(cds, shorten = FALSE, frame = 1, framelist=NULL){
+    stopifnot("Error: input needs to be a DNAStringSet"=
+        is(cds, "DNAStringSet"))
+    stopifnot("Error: input needs to be a Alignment of equal width"=
+        length(unique(Biostrings::width(cds)))==1)
+    stopifnot("Error: frame needs to be 1 or 2 or 3"= frame %in% c(1, 2, 3))
+    if(!is.null(framelist)){
+        stopifnot("Error: framelist needs to be of equal length as cds"=
+            length(framelist) != length(cds))
     }
-    if(length(unique(Biostrings::width(cds)))!=1){
-        stop("Error: input needs to be a Alignment of equal width")
-    }
-    if(!frame %in% c(1, 2, 3)){stop("Error: frame needs to be 1 or 2 or 3")}
     if(!is.null(names(cds))){
         names(cds) <- stringr::word(names(cds), 1)
     }
-    cds <- Biostrings::subseq(cds, frame, unique(Biostrings::width(cds)))
+    if(is.null(framelist)){
+        cds <- Biostrings::subseq(cds, frame, Biostrings::width(cds))
+    }
+    if(!is.null(framelist)){
+        cds <- Biostrings::subseq(cds, framelist, Biostrings::width(cds))
+    }
     if(shorten){
         cds <- Biostrings::subseq(cds, 1,
             Biostrings::width(cds) - Biostrings::width(cds) %% 3)

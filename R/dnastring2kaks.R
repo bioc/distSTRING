@@ -29,9 +29,12 @@
 #' @examples
 #' ## load example sequence data
 #' data("hiv", package="distSTRING")
-#' dnastring2kaks(hiv, model="Li")
-#' dnastring2kaks(hiv, model="NG86")
-#' dnastring2kaks(hiv, model="NG86", threads=2)
+#' #dnastring2kaks(hiv, model="Li")
+#' hiv |> dnastring2kaks(model="Li")
+#' #dnastring2kaks(hiv, model="NG86")
+#' hiv |> dnastring2kaks(model="NG86")
+#' #dnastring2kaks(hiv, model="NG86", threads=2)
+#' hiv |> dnastring2kaks(model="NG86", threads=2)
 #' @export dnastring2kaks
 #' @author Kristian K Ullrich
 
@@ -40,9 +43,8 @@ dnastring2kaks <- function(cds,
     threads = 1){
     Comp1 <- FALSE
     Comp2 <- FALSE
-    if(!model %in% c("Li", "NG86")){
-        stop("Error: either choose model 'Li' or 'NG86'")
-    }
+    stopifnot("Error: either choose model 'Li' or 'NG86'"=
+        model %in% c("Li", "NG86"))
     if(model == "Li"){
         if("Comp1" %in% names(cds)){
             names(cds)[which(names(cds) == "Comp1")] <- "_Comp1"
@@ -101,7 +103,7 @@ dnastring2kaks <- function(cds,
         doParallel::registerDoParallel(cl)
         i <- NULL
         j <- NULL
-        codonmat <- dnastring2codonmat(cds)
+        codonmat <- distSTRING::dnastring2codonmat(cds)
         OUT <- foreach(i = seq(from = 1, to = ncol(codonmat) - 1),
             .combine=rbind, .packages = c('foreach')) %dopar% {
             foreach(j = seq(from = i + 1, to = ncol(codonmat)),

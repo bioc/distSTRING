@@ -33,8 +33,10 @@ pairwise comparisons for indels, syn, and nonsyn mutations according to
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-codonmat2xy(dnastring2codonmat(hiv))
-codonmat2xy(dnastring2codonmat(hiv), threads=2)
+#codonmat2xy(dnastring2codonmat(hiv))
+hiv |> dnastring2codonmat() |> codonmat2xy()
+#codonmat2xy(dnastring2codonmat(hiv), threads=2)
+hiv |> dnastring2codonmat() |> codonmat2xy(threads=2)
 }
 \references{
 Nei and Gojobori. (1986) Simple methods for estimating the

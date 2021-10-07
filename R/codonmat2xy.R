@@ -42,8 +42,10 @@
 #' @examples
 #' ## load example sequence data
 #' data("hiv", package="distSTRING")
-#' codonmat2xy(dnastring2codonmat(hiv))
-#' codonmat2xy(dnastring2codonmat(hiv), threads=2)
+#' #codonmat2xy(dnastring2codonmat(hiv))
+#' hiv |> dnastring2codonmat() |> codonmat2xy()
+#' #codonmat2xy(dnastring2codonmat(hiv), threads=2)
+#' hiv |> dnastring2codonmat() |> codonmat2xy(threads=2)
 #' @export codonmat2xy
 #' @author Kristian K Ullrich
 
@@ -54,16 +56,44 @@ codonmat2xy <- function(codonmat, threads = 1){
     j <- NULL
     k <- NULL
     OUT <- foreach::foreach(i = seq(from = 1, to = nrow(codonmat)),
-            .combine=rbind, .packages = c('foreach')) %dopar% {
-        foreach::foreach(j = seq(from = 1, to = ncol(codonmat) - 1),
+        .combine=rbind, .packages = c('foreach')) %dopar% {
+        codon_i <- table(codonmat[i,])
+####
+#        foreach::foreach(j = seq(from = 1, to = ncol(codonmat) - 1),
+#            .combine=rbind) %do% {
+#            foreach::foreach(k = seq(from = j + 1, to = ncol(codonmat)),
+#                .combine=rbind) %do% {
+#        c(setNames(i, "Codon"),
+#            setNames(j, "Comp1"),
+#            setNames(k, "Comp2"),
+#            setNames(distSTRING::compareCodons(codonmat[i, j],
+#            codonmat[i, k]), c("syn", "nonsyn", "indel")))
+####
+        foreach::foreach(j = seq(from = 1, to = length(codon_i) ),
             .combine=rbind) %do% {
-            foreach::foreach(k = seq(from = j + 1, to = ncol(codonmat)),
+            foreach::foreach(k = seq(from = j, to = length(codon_i)),
                 .combine=rbind) %do% {
-                c(setNames(i, "Codon"),
-                    setNames(j, "Comp1"),
-                    setNames(k, "Comp2"),
-                    setNames(distSTRING::compareCodons(codonmat[i, j],
-                        codonmat[i, k]), c("syn", "nonsyn", "indel")))
+                if(j == k){
+                    d <- do.call("rbind", rep(list(c(setNames(i, "Codon"),
+                        setNames(j, "Comp1"),
+                        setNames(k, "Comp2"),
+                        setNames(distSTRING::compareCodons(
+                            names(codon_i)[j],
+                            names(codon_i)[k]),
+                            c("syn", "nonsyn", "indel")))),
+                    (codon_i[j] * (codon_i[k] - 1)) / 2))
+                }
+                if(j != k){
+                    d <- do.call("rbind", rep(list(c(setNames(i, "Codon"),
+                        setNames(j, "Comp1"),
+                        setNames(k, "Comp2"),
+                        setNames(distSTRING::compareCodons(
+                            names(codon_i)[j],
+                            names(codon_i)[k]),
+                            c("syn", "nonsyn", "indel")))),
+                    codon_i[j] * codon_i[k]))
+                }
+                d
             }
         }
     }

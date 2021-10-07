@@ -6,9 +6,12 @@
 \usage{
 granthamMatrix()
 }
+\value{
+\code{matrix}
+}
 \description{
 This function creates a \code{granthamMatrix} object to be used
-with the \code{distSTRING} function. By default, the grantham matrix is
+with the \code{distSTRING} function. By default,the grantham matrix is
 defined as from \code{Grantham 1974}.
 (see \url{https://link.springer.com/article/10.1007/s00335-017-9704-9})
 }
@@ -17,10 +20,10 @@ granthamMatrix()
 }
 \references{
 Grantham R. (1974). Amino Acid Difference Formula
-to Help Explain Protein Evolution. \emph{Science}, \bold{185(4154)}, 862-864.
+to Help Explain Protein Evolution. \emph{Science},\bold{185(4154)},862-864.
 }
 \seealso{
-\link[distSTRING]{aastring2dist}, \link[ape]{dist.dna}
+\link[distSTRING]{aastring2dist},\link[ape]{dist.dna}
 }
 \author{
 Kristian K Ullrich

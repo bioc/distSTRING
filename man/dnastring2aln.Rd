@@ -28,9 +28,10 @@ This function converts a \code{DNAStringSet} into an
 cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 cds2 <- Biostrings::DNAString("ATG---CATTGC")
 cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
- Biostrings::DNAStringSet(cds2))
+    Biostrings::DNAStringSet(cds2))
 ## convert into alignment
-dnastring2aln(cds1.cds2.aln)
+#dnastring2aln(cds1.cds2.aln)
+cds1.cds2.aln |> dnastring2aln()
 }
 \seealso{
 \code{\link[seqinr]{as.alignment}}

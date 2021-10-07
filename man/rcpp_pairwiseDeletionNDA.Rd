@@ -12,8 +12,17 @@ rcpp_pairwiseDeletionDNA(dnavector, ncores = 1L)
 
 \item{ncores}{number of cores}
 }
+\value{
+list
+}
 \description{
 returns number of DNA sites used
+}
+\examples{
+## load example sequence data
+data("woodmouse", package="ape")
+w <- woodmouse |> dnabin2dnastring() |> as.character()
+rcpp_pairwiseDeletionDNA(dnavector=w, ncores=1)
 }
 \author{
 Kristian K Ullrich

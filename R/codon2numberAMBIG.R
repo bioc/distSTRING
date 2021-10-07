@@ -9,7 +9,8 @@
 #' @importFrom stats setNames
 #' @seealso \code{\link[Biostrings]{GENETIC_CODE}}
 #' @examples
-#' unlist(lapply(names(Biostrings::GENETIC_CODE), codon2numberAMBIG))
+#' #unlist(lapply(names(Biostrings::GENETIC_CODE), codon2numberAMBIG))
+#' names(Biostrings::GENETIC_CODE) |> codon2numberAMBIG()
 #' @export codon2numberAMBIG
 #' @author Kristian K Ullrich
 

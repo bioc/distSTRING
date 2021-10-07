@@ -37,7 +37,8 @@ Gojobori (1986)}.
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-codonmat2pnps(dnastring2codonmat(hiv)[,c(1, 2)])
+#codonmat2pnps(dnastring2codonmat(hiv)[,c(1, 2)])
+(hiv |> dnastring2codonmat())[,c(1, 2)] |> codonmat2pnps()
 }
 \references{
 Nei and Gojobori. (1986) Simple methods for estimating the

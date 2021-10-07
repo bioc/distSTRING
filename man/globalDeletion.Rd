@@ -9,6 +9,9 @@ globalDeletion(dna)
 \arguments{
 \item{dna}{\code{DNAStringSet}}
 }
+\value{
+\code{DNAStringSet}
+}
 \description{
 This function returns a \code{DNAStringSet} reduced by all
 sites containing any gaps ("-", "+", ".") or missing ("N") sites.
@@ -18,7 +21,7 @@ sites containing any gaps ("-", "+", ".") or missing ("N") sites.
 cds1 <- Biostrings::DNAString("ATGCAACATTGC")
 cds2 <- Biostrings::DNAString("ATG---CATTGC")
 cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
- Biostrings::DNAStringSet(cds2))
+    Biostrings::DNAStringSet(cds2))
 globalDeletion(cds1.cds2.aln)
 }
 \author{

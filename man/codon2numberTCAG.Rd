@@ -16,7 +16,8 @@ An object of class \code{numeric}
 This function converts a \code{codon} into a \code{number}.
 }
 \examples{
-unlist(lapply(names(Biostrings::GENETIC_CODE), codon2numberTCAG))
+#unlist(lapply(names(Biostrings::GENETIC_CODE), codon2numberTCAG))
+names(Biostrings::GENETIC_CODE) |> codon2numberTCAG()
 }
 \seealso{
 \code{\link[Biostrings]{GENETIC_CODE}}

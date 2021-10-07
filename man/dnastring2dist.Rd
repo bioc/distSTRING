@@ -31,11 +31,15 @@ combinations of a \code{DNAStringSet}.
 \examples{
 ## load example sequence data
 data("hiv", package="distSTRING")
-dnastring2dist(hiv, model="IUPAC")
-dnastring2dist(hiv, model="K80")
+#dnastring2dist(hiv, model="IUPAC")
+hiv |> dnastring2dist(model="IUPAC")
+#dnastring2dist(hiv, model="K80")
+hiv |> dnastring2dist(model="K80")
 data("woodmouse", package="ape")
-dnastring2dist(dnabin2dnastring(woodmouse), score=iupacMatrix())
-dnastring2dist(hiv, model = "IUPAC", threads = 2)
+#dnastring2dist(dnabin2dnastring(woodmouse), score=iupacMatrix())
+woodmouse |> dnabin2dnastring() |> dnastring2dist()
+#dnastring2dist(hiv, model = "IUPAC", threads = 2)
+hiv |> dnastring2dist(model = "IUPAC", threads = 2)
 }
 \seealso{
 \code{\link[ape]{dist.dna}}
