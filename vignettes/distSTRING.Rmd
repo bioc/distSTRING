@@ -1,0 +1,241 @@
+---
+title: "distSTRING Vignette"
+author: "Kristian K Ullrich"
+date: "`r Sys.Date()`"
+abstract: >
+    distSTRING calculates pairwise distances between all sequences of
+    a DNAStringSet or a AAStringSet using a custom score matrix and conducts
+    codon based analysis. It uses scoring matrices to be used in these pairwise
+    distance calcualtions which can be adapted to any scoring for DNA or AA
+    characters. E.g. by using literal distances distSTRING calcualtes pairwise
+    IUPAC distances. DNAStringSet alignments can be analysed as codon alignments
+    to look for synonymous and nonsynonymous substitutions in a parallelised
+    fashion.
+bibliography: bibliography.bib
+output: BiocStyle::html_document
+vignette: >
+    %\VignetteIndexEntry{distSTRING Vignette}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+```{r echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+suppressPackageStartupMessages({
+    library(distSTRING)
+    library(Biostrings)
+    library(GenomeInfoDb)
+    library(tidyverse)
+    library(grDevices)
+    })
+```
+
+# Introduction
+
+Calculating pairwise distances of either DNA or AA sequences is a common task
+for evolutionary biologist. The distance calculations are either based on
+specific nucleotide, codon or aminoacid models or on a scoring matrix. The R
+package [`ape`](https://cran.r-project.org/web/packages/ape/index.html) offers
+the `ape::dist.dna` function, which has implemented a collection of different
+evolutionary models. [`distSTRING`](http://bioconductor.org/packages/release/bioc/html/distSTRING.html)
+extends the possibility to directly calculate pairwise nucloetide distances of
+an `Biostrings::DNAStringSet` object or pairwise aminoacid distances of an
+`Biostrings::AAStringSet` object. The scoring matrix based calculations are
+implemented in `c++` with `RcppThread` to parallelise pairwise combinations.
+
+It is a non-trival part to resolve haploid (1n) sequences
+from a diploid (2n) individual (aka phasing) to further use the individual
+haploid sequences for distance calculations. To cope with this situation,
+`distSTRING` uses literal distance [@chang2017whole] which can be directly
+applied on `IUPAC` nucleotide ambiguity encoded sequences, like e.g. obtained
+directly from mapped `BAM` files and the [angsd](http://www.popgen.dk/angsd/index.php/Fasta) `-doFasta 4` option [@korneliussen2014angsd].
+
+[@grantham1974amino]
+
+using either ssynonymous (Ks) and nonsynonymous substitutions (Ka) per orthologous sequence
+pair , since its ratio Ka/Ks can be used as an
+indicator of selective pressure acting on a protein
+
+# Installation
+
+To install this package, start R (version "4.1") and enter:
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("distSTRING")
+```
+
+# Load distSTRING
+
+```{r}
+# load distSTRING
+library(distSTRING)
+```
+
+# Sequence Format conversion
+
+To be able to use distance calculation functions from other R packages, like [`ape`](https://cran.r-project.org/web/packages/ape/index.html) or
+[`seqinr`](https://cran.r-project.org/web/packages/seqinr/index.html), it is
+necessary to have dedicated sequence format conversion functions. Here, some
+examples are shown, how to convert from and to a `Biostrings::DNAStringSet`
+object.
+
+`?Biostrings::DNAStringSet()` >>> `?seqinr::as.alignment()`
+
+```{r}
+## define two cds sequences
+cds1 <- Biostrings::DNAString("ATGCAACATTGC")
+cds2 <- Biostrings::DNAString("ATG---CATTGC")
+cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
+    Biostrings::DNAStringSet(cds2))
+## define names
+names(cds1.cds2.aln) <- c("seq1", "seq2")
+## convert into alignment
+cds1.cds2.aln |> dnastring2aln()
+```
+
+`?seqinr::as.alignment()` >>> `?Biostrings::DNAStringSet()`
+
+```{r}
+## convert back into DNAStringSet
+cds1.cds2.aln |> dnastring2aln() |> aln2dnastring()
+```
+
+`?Biostrings::DNAStringSet()` >>> `?ape::DNAbin()`
+
+```{r}
+## convert into alignment
+cds1.cds2.aln |> dnastring2dnabin()
+```
+
+`?ape::DNAbin()` >>> `?Biostrings::DNAStringSet()`
+
+```{r}
+## convert back into DNAStringSet
+cds1.cds2.aln |> dnastring2dnabin() |> dnabin2dnastring()
+## use woodmouse data
+data(woodmouse, package="ape")
+woodmouse |> dnabin2dnastring()
+```
+
+`?Biostrings::AAStringSet()` >>> `?seqinr::as.alignment()`
+
+```{r}
+## translate cds into aa
+aa1.aa2.aln <- cds1.cds2.aln |> cds2aa()
+## convert into alignment
+aa1.aa2.aln |> aastring2aln()
+```
+
+`?seqinr::as.alignment()` >>> `?Biostrings::AAStringSet()`
+
+```{r}
+## convert back into AAStringSet
+aa1.aa2.aln |> aastring2aln() |> aln2aastring()
+```
+
+`?Biostrings::AAStringSet()` >>> `?ape::as.AAbin()`
+
+```{r}
+## convert into AAbin
+aa1.aa2.aln |> aastring2aabin()
+```
+
+`?ape::as.AAbin()` >>> `?Biostrings::AAStringSet()`
+
+```{r}
+## convert back into AAStringSet
+aa1.aa2.aln |> aastring2aabin() |> aabin2aastring()
+```
+
+# Frame aware `Biostrings::DNAStringSet` translation
+
+To be able to translate a coding sequence into amino acids, sometimes the
+sequences do not start at the first frame. The `cds2aa` function can take an
+alternative codon start site into account (`frame = 1` or `frame = 2` or
+`frame = 3`). However, sometimes it is also
+necessary that the resulting coding sequence length is a multiple of three.
+This can be forced by using the `shorten = TRUE` option.
+
+Simple translation:
+
+```{r}
+## define two cds sequences
+cds1 <- Biostrings::DNAString("ATGCAACATTGC")
+cds2 <- Biostrings::DNAString("ATG---CATTGC")
+cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
+    Biostrings::DNAStringSet(cds2))
+## define names
+names(cds1.cds2.aln) <- c("seq1", "seq2")
+## translate cds into aa
+cds1.cds2.aln |> cds2aa()
+aa1.aa2.aln <- cds1.cds2.aln |> cds2aa()
+```
+
+Translation keeping multiple of three sequence length:
+
+```{r}
+## translate cds into aa using frame = 2
+## result is empty due to not multiple of three
+cds1.cds2.aln |> cds2aa(frame=2)
+## translate cds into aa using frame = 2 and shorten = TRUE
+cds1.cds2.aln |> cds2aa(frame=2, shorten=TRUE)
+## translate cds into aa using frame = 3 and shorten = TRUE
+cds1.cds2.aln |> cds2aa(frame=3, shorten=TRUE)
+## use woodmouse data
+data(woodmouse, package="ape")
+woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE)
+```
+
+Translation using alternative genetic code:
+
+As you can see from the above example, the initial amino acids `I` will change
+into `M` due to the mitochondrial translation code and also some `*` stop
+codons will change into a `W` amino acid.
+
+```{r}
+## alternative genetic code
+data(woodmouse, package="ape")
+woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE,
+                                          genetic.code=Biostrings::getGeneticCode("2"))
+```
+
+# Pairwise sequence comparison
+
+
+## Calculate pairwise AA distances based on Grantham's distance
+
+```{r}
+## load example sequence data
+data("hiv", package="distSTRING")
+
+## calculate pairwise AA distances based on Grantham's distance
+aa.dist <- hiv |> cds2aa() |> aastring2dist(score=granthamMatrix())
+## obtain distances
+head(aa.dist$distSTRING)
+## obtain pairwise sites used
+head(aa.dist$sitesUsed)
+```
+
+## Calculate pairwise DNA distances based on `ape::dist.dna` models
+
+## Calculate pairwise DNA distances based on IUPAC distance
+
+# Codon comparison
+
+
+
+# References
+
+---
+nocite: '@*'
+---
+
+<div id="refs"></div>
+
+# Session Info
+
+```{r sessionInfo, echo=TRUE}
+sessionInfo()
+```
