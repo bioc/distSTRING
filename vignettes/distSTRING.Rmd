@@ -23,9 +23,10 @@ vignette: >
 suppressPackageStartupMessages({
     library(distSTRING)
     library(Biostrings)
-    library(GenomeInfoDb)
-    library(tidyverse)
-    library(grDevices)
+    library(ape)
+    library(dplyr)
+    library(tidyr)
+    library(ggplot2)
     })
 ```
 
@@ -97,6 +98,10 @@ BiocManager::install("distSTRING")
 ```{r}
 # load distSTRING
 library(distSTRING)
+# load example data
+data(hiv, package="distSTRING")
+data(AAMatrix, package="distSTRING")
+data(woodmouse, package="ape")
 ```
 
 # Sequence Format conversion
@@ -142,7 +147,6 @@ cds1.cds2.aln |> dnastring2dnabin()
 ## convert back into DNAStringSet
 cds1.cds2.aln |> dnastring2dnabin() |> dnabin2dnastring()
 ## use woodmouse data
-data(woodmouse, package="ape")
 woodmouse |> dnabin2dnastring()
 ```
 
@@ -211,7 +215,6 @@ cds1.cds2.aln |> cds2aa(frame=2, shorten=TRUE)
 ## translate cds into aa using frame = 3 and shorten = TRUE
 cds1.cds2.aln |> cds2aa(frame=3, shorten=TRUE)
 ## use woodmouse data
-data(woodmouse, package="ape")
 woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE)
 ```
 
@@ -223,7 +226,7 @@ codons will change into a `W` amino acid.
 
 ```{r}
 ## alternative genetic code
-data(woodmouse, package="ape")
+## use woodmouse data
 woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE,
     genetic.code=Biostrings::getGeneticCode("2"))
 ```
@@ -235,9 +238,6 @@ woodmouse |> dnabin2dnastring() |> cds2aa(shorten=TRUE,
 ### Grantham's distance
 
 ```{r}
-## load example sequence data
-data("hiv", package="distSTRING")
-
 ## calculate pairwise AA distances based on Grantham's distance
 aa.dist <- hiv |> cds2aa() |> aastring2dist(score=granthamMatrix())
 ## obtain distances
@@ -257,7 +257,7 @@ R package [`alakazam`](https://cran.r-project.org/web/packages/ape/index.html)
 is used:
 
 ```{r}
-data("AAMatrix", package="distSTRING")
+## use AAMatrix data
 head(AAMatrix)
 aa.dist.AAMatrix <- hiv |> cds2aa() |> aastring2dist(score=AAMatrix)
 head(aa.dist.AAMatrix$distSTRING)
@@ -268,8 +268,7 @@ head(aa.dist.AAMatrix$distSTRING)
 ### `ape::dist.dna` models
 
 ```{r}
-## load example sequence data
-data("hiv", package="distSTRING")
+## use hiv data
 dna.dist <- hiv |> dnastring2dist(model="K80")
 ## obtain distances
 head(dna.dist$distSTRING)
@@ -300,6 +299,7 @@ ape::cophyloplot(aa.dist.bionj,
 ### `IUPAC` distance 
 
 ```{r}
+## use hiv data
 hiv.dist.iupac <- head(hiv |> dnastring2dist(model="IUPAC"))
 head(hiv.dist.iupac$distSTRING)
 ## run multi-threaded
@@ -310,8 +310,7 @@ system.time(hiv |> dnastring2dist(model="IUPAC", threads=2))
 Woodmouse data example:
 
 ```{r}
-## load example sequence data
-data("woodmouse", package="ape")
+## use woodmouse data
 woodmouse.dist <- woodmouse |> dnabin2dnastring() |> dnastring2dist()
 head(woodmouse.dist$distSTRING)
 ```
@@ -321,8 +320,7 @@ head(woodmouse.dist$distSTRING)
 ## Calculating synonymous and nonsynonymous substitutions (`dnastring2kaks()`)
 
 ```{r}
-## load example sequence data
-data("hiv", package="distSTRING")
+## use hiv data
 ## model Li
 head(hiv |> dnastring2kaks(model="Li"))
 ## model NG86
@@ -364,8 +362,7 @@ cds1.cds2.aln |> dnastring2codonmat(frame=2, shorten=TRUE)
 ### Calculate average behavior of each codon (`codonmat2xy()`)
 
 ```{r}
-## load example sequence data
-data("hiv", package="distSTRING")
+## use hiv data
 ## calculate average behavior
 hiv.xy <- hiv |> dnastring2codonmat() |> codonmat2xy()
 ```
@@ -373,13 +370,13 @@ hiv.xy <- hiv |> dnastring2codonmat() |> codonmat2xy()
 ### Plot average behavior of each codon
 
 ```{r}
-hiv.xy %>% select(Codon,SynMean,NonSynMean,IndelMean) %>%
-    gather(variable, values, -Codon) %>% 
-    ggplot(aes(x=Codon, y=values)) + 
-    geom_line(aes(colour=factor(variable))) + 
-    geom_point(aes(colour=factor(variable))) + 
-    ggtitle("HIV-1 sample 136 patient 1 from
-        Sweden envelope glycoprotein (env) gene")
+print(hiv.xy |> dplyr::select(Codon,SynMean,NonSynMean,IndelMean) |>
+    tidyr::gather(variable, values, -Codon) |>
+    ggplot2::ggplot(aes(x=Codon, y=values)) + 
+    ggplot2::geom_line(aes(colour=factor(variable))) + 
+    ggplot2::geom_point(aes(colour=factor(variable))) + 
+    ggplot2::ggtitle("HIV-1 sample 136 patient 1 from
+        Sweden envelope glycoprotein (env) gene"))
 ```
 
 # References
