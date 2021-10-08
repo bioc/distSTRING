@@ -22,12 +22,12 @@
 aabin2aastring <- function(aabin){
     if(!is.null(dim(aabin))){
         aa <- setNames(Biostrings::AAStringSet(unlist(apply(
-          as.character(aabin), 1, function(x) paste0(x, collapse = "")))),
+            as.character(aabin), 1, function(x) paste0(x, collapse = "")))),
             labels(aabin))
     }
     if(is.null(dim(aabin))){
         aa <- setNames(Biostrings::AAStringSet(unlist(lapply(
-          as.character(aabin), function(x) paste0(x, collapse = "")))),
+            as.character(aabin), function(x) paste0(x, collapse = "")))),
             labels(aabin))
     }
     return(aa)
