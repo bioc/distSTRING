@@ -43,7 +43,8 @@ Suggests:
   rmarkdown,
   knitr,
   devtools,
-  testthat
+  testthat,
+  BiocStyle
 LinkingTo: Rcpp, RcppThread
 VignetteBuilder: knitr
 NeedsCompilation: yes

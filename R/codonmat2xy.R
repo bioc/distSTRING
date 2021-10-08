@@ -50,7 +50,12 @@
 #' @author Kristian K Ullrich
 
 codonmat2xy <- function(codonmat, threads = 1){
-    cl <- parallel::makeForkCluster(threads)
+    if(.Platform$OS.type == "windows"){
+        cl <- parallel::makeCluster(threads)
+    }
+    if(.Platform$OS.type != "windows"){
+        cl <- parallel::makeForkCluster(threads)
+    }
     doParallel::registerDoParallel(cl)
     i <- NULL
     j <- NULL

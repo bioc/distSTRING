@@ -99,7 +99,12 @@ dnastring2kaks <- function(cds,
     }
     if(model == "NG86"){
         #doMC::registerDoMC(threads)
-        cl <- parallel::makeForkCluster(threads)
+        if(.Platform$OS.type == "windows"){
+            cl <- parallel::makeCluster(threads)
+        }
+        if(.Platform$OS.type != "windows"){
+            cl <- parallel::makeForkCluster(threads)
+        }
         doParallel::registerDoParallel(cl)
         i <- NULL
         j <- NULL
