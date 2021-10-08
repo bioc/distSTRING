@@ -13,7 +13,8 @@ aln2aastring(aln)
 An object of class \code{AAStringSet}
 }
 \description{
-This function converts a \code{seqinr} \code{alignment} into an \code{AAStringSet}.
+This function converts a \code{seqinr} \code{alignment} into
+an \code{AAStringSet}.
 }
 \examples{
 ## define two cds sequences
@@ -25,7 +26,8 @@ cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
 cds1.cds2.aln |> cds2aa() |> aastring2aln() |> aln2aastring()
 }
 \seealso{
-\code{\link[seqinr]{as.alignment}} \code{\link[Biostrings]{AAStringSet}}
+\code{\link[seqinr]{as.alignment}}
+\code{\link[Biostrings]{AAStringSet}}
 }
 \author{
 Kristian K Ullrich

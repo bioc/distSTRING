@@ -13,7 +13,8 @@ aln2dnastring(aln)
 An object of class \code{DNAStringSet}
 }
 \description{
-This function converts a \code{seqinr} \code{alignment} into an \code{DNAStringSet}.
+This function converts a \code{seqinr} \code{alignment} into
+an \code{DNAStringSet}.
 }
 \examples{
 ## define two cds sequences
@@ -29,7 +30,8 @@ cds1.cds2.aln |> dnastring2aln()
 cds1.cds2.aln |> dnastring2aln() |> aln2dnastring()
 }
 \seealso{
-\code{\link[seqinr]{as.alignment}} \code{\link[Biostrings]{DNAStringSet}}
+\code{\link[seqinr]{as.alignment}}
+\code{\link[Biostrings]{DNAStringSet}}
 }
 \author{
 Kristian K Ullrich

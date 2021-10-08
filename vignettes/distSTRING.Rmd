@@ -38,12 +38,14 @@ specific nucleotide, codon or amino acid models or on a scoring matrix.
 __Note:__ Sequences need to be pre-aligned into so called multiple sequence
 alignments (MSA), which can be done with a multitude of existing software.
 Just to mention for example [mafft](https://mafft.cbrc.jp/alignment/server/),
-[muscle](https://www.ebi.ac.uk/Tools/msa/muscle/) or the R package [`msa`](https://bioconductor.org/packages/release/bioc/html/msa.html).
+[muscle](https://www.ebi.ac.uk/Tools/msa/muscle/) or the R package
+[`msa`](https://bioconductor.org/packages/release/bioc/html/msa.html).
 
 The R package [`ape`](https://cran.r-project.org/web/packages/ape/index.html)
 for example offers the `ape::dist.dna()` function, which has implemented a
 collection of different evolutionary models.
-[`distSTRING`](http://bioconductor.org/packages/release/bioc/html/distSTRING.html)
+[`distSTRING`](http://bioconductor.org/
+packages/release/bioc/html/distSTRING.html)
 extends the possibility to directly calculate pairwise nucloetide
 distances of an `Biostrings::DNAStringSet` object or pairwise amino acid
 distances of an `Biostrings::AAStringSet` object. The scoring matrix based
@@ -56,7 +58,8 @@ haploid sequences for distance calculations. To cope with this situation,
 `distSTRING` uses a literal distance [@chang2017whole] which can be directly
 applied on `IUPAC` nucleotide ambiguity encoded sequences with the
 `dnastring2dist()` function. `IUPAC` sequences can be for example obtained
-directly from mapped `BAM` files and the [angsd](http://www.popgen.dk/angsd/index.php/Fasta) `-doFasta 4` option [@korneliussen2014angsd].
+directly from mapped `BAM` files and the [angsd](http://www.popgen.dk/
+angsd/index.php/Fasta) `-doFasta 4` option [@korneliussen2014angsd].
 
 The Grantham's score [@grantham1974amino] attempts to predict the distance
 between two amino acids, in an evolutionary sense considering the amino acid
@@ -98,7 +101,8 @@ library(distSTRING)
 
 # Sequence Format conversion
 
-To be able to use distance calculation functions from other R packages, like [`ape`](https://cran.r-project.org/web/packages/ape/index.html) or
+To be able to use distance calculation functions from other R packages, like
+[`ape`](https://cran.r-project.org/web/packages/ape/index.html) or
 [`seqinr`](https://cran.r-project.org/web/packages/seqinr/index.html), it is
 necessary to have dedicated sequence format conversion functions. Here, some
 examples are shown, how to convert from and to a `Biostrings::DNAStringSet`
@@ -285,12 +289,12 @@ It is also possible to compare the amino acid and nucleotide based trees:
 association <- cbind(aa.dist.bionj$tip.label, aa.dist.bionj$tip.label)
 ## cophyloplot
 ape::cophyloplot(aa.dist.bionj,
-                 dna.dist.bionj,
-                 assoc=association,
-                 length.line=4,
-                 space=28,
-                 gap=3,
-                 rotate=FALSE)
+    dna.dist.bionj,
+    assoc=association,
+    length.line=4,
+    space=28,
+    gap=3,
+    rotate=FALSE)
 ```
 
 ### `IUPAC` distance 
@@ -314,7 +318,7 @@ head(woodmouse.dist$distSTRING)
 
 # Coding sequences
 
-## Calculating synonymous (Ks) and nonsynonymous (Ka) substitutions (`dnastring2kaks()`)
+## Calculating synonymous and nonsynonymous substitutions (`dnastring2kaks()`)
 
 ```{r}
 ## load example sequence data
@@ -330,7 +334,8 @@ head(hiv |> dnastring2kaks(model="NG86", threads=1))
 As an example for the codon comparison data from the Human Immunodeficiency
 Virus Type 1 is used [@ganeshan1997human], [@yang2000codon].
 
-The window plots are constructed with the R package [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html).
+The window plots are constructed with the R package
+[`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html).
 
 ### Create codon matrix (`dnastring2codonmat()`)
 
@@ -373,7 +378,8 @@ hiv.xy %>% select(Codon,SynMean,NonSynMean,IndelMean) %>%
     ggplot(aes(x=Codon, y=values)) + 
     geom_line(aes(colour=factor(variable))) + 
     geom_point(aes(colour=factor(variable))) + 
-    ggtitle("HIV-1 sample 136 patient 1 from Sweden envelope glycoprotein (env) gene")
+    ggtitle("HIV-1 sample 136 patient 1 from
+        Sweden envelope glycoprotein (env) gene")
 ```
 
 # References
