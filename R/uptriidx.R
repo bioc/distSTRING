@@ -11,6 +11,7 @@
 #' @author Kristian K Ullrich
 
 uptriidx <- function(n, diag = FALSE){
+    stopifnot("Error: n needs to larger than 1"= n>1)
     if(diag == TRUE){
         tmp <- cbind(seq(1, n), seq(0, n - 1))
     }
