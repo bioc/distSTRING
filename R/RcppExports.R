@@ -45,7 +45,7 @@ rcpp_pairwiseDeletionAA <- function(aavector, ncores = 1L) {
 #' @import Rcpp
 #' @import RcppThread
 #' @title rcpp_pairwiseDeletionDNA
-#' @name rcpp_pairwiseDeletionNDA
+#' @name rcpp_pairwiseDeletionDNA
 #' @description returns number of DNA sites used
 #' @return list
 #' @param dnavector StringVector
