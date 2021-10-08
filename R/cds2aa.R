@@ -40,7 +40,7 @@ cds2aa <- function(cds, shorten=FALSE, frame=1, framelist=NULL,
     stopifnot("Error: frame needs to be 1 or 2 or 3"= frame %in% c(1, 2, 3))
     if(!is.null(framelist)){
         stopifnot("Error: framelist needs to be of equal length as cds"=
-            length(framelist) != length(cds))
+            length(framelist) == length(cds))
     }
     if(!is.null(names(cds))){
         names(cds) <- stringr::word(names(cds), 1)
