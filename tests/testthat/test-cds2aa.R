@@ -13,7 +13,7 @@ test_that("cds2aa() outputs AAStringSet", {
     cds1.cds2.aln <- c(Biostrings::DNAStringSet(cds1),
         Biostrings::DNAStringSet(cds2))
     expect_true(as.character(cds2aa(cds1.cds2.aln,framelist=c(2,3),
-    shorten=T))[2] == "XXL")
+    shorten=TRUE))[2] == "XXL")
     expect_true(as.character(cds2aa(Biostrings::DNAStringSet("GTG"),
     genetic.code=Biostrings::getGeneticCode("2"))) == "M")
 })
