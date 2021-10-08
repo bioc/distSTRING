@@ -7,7 +7,8 @@
 codonmat2pnps(codonmat)
 }
 \arguments{
-\item{codonmat}{\code{codonmat} A [mandatory]}
+\item{codonmat}{\code{codonmat} A codonmat of two columns to be
+compared [mandatory]}
 }
 \value{
 An object of class \code{pnps} which is a list with the following
