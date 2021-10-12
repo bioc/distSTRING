@@ -6,6 +6,10 @@
 src/*.o
 src/*.so
 src/*.dll
+*.o
+*.so
+*.dylib
+*.dll
 docs
 *-Ex.R
 /*.tar.gz
