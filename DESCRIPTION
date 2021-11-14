@@ -26,6 +26,8 @@ Imports:
   Rcpp,
   RcppThread,
   Biostrings,
+  GenomicRanges,
+  IRanges,
   ape,
   doParallel,
   dplyr,
