@@ -20,6 +20,8 @@
 #' @author Kristian K Ullrich
 
 aabin2aastring <- function(aabin){
+    stopifnot("Error: input needs to be an AAbin"=
+        methods::is(aabin, "AAbin"))
     if(!is.null(dim(aabin))){
         aa <- setNames(Biostrings::AAStringSet(unlist(apply(
             as.character(aabin), 1, function(x) paste0(x, collapse = "")))),

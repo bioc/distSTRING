@@ -8,7 +8,7 @@
 codon2number(codon)
 }
 \arguments{
-\item{codon}{codon}
+\item{codon}{\code{codon} [mandatory]}
 }
 \value{
 An object of class \code{numeric}

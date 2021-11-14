@@ -7,7 +7,7 @@
 codonmat2pnps(codonmat)
 }
 \arguments{
-\item{codonmat}{\code{codonmat} A codonmat of two columns to be
+\item{codonmat}{\code{codon matrix} of two columns to be
 compared [mandatory]}
 }
 \value{

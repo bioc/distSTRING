@@ -2,7 +2,7 @@
 #' @name GENETIC_CODE_TCAG
 #' @description \code{GENETIC_CODE} from \code{Biostrings} extended by codon
 #' number and number of syn sites.
-#' @param codon codon
+#' @param codon \code{codon} [mandatory]
 #' @return An object of class \code{numeric}
 #' @importFrom Biostrings GENETIC_CODE
 #' @importFrom stats setNames

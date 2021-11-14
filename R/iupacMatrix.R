@@ -1,10 +1,10 @@
 #' @title iupacMatrix
 #' @name iupacMatrix
 #' @description This function creates a \code{iupacMatrix} object to be used
-#' with the \code{distSTRING} function. By default,the iupac matrix is
+#' with the \code{distSTRING} function. By default, the \code{iupac matrix} is
 #' defined as literal distance obtained from \code{Chang et al. 2017}.
 #' (see \url{https://link.springer.com/article/10.1007/s00335-017-9704-9})
-#' @return \code{matrix}
+#' @return \code{score matrix}
 #' @references Chang,P. L.,Kopania,E.,Keeble,S.,Sarver,B. A.,Larson,
 #' E.,Orth,A.,... & Dean,M. D. (2017). Whole exome sequencing of
 #' wild-derived inbred strains of mice improves power to link phenotype and
@@ -18,6 +18,7 @@
 ## R Y S W K M
 ## B D H V
 ## . - N X
+
 iupacMatrix<-function(){
     distances<-c(
     # A

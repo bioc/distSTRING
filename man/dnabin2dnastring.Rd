@@ -13,7 +13,7 @@ dnabin2dnastring(dnabin)
 An object of class \code{DNAStringSet}
 }
 \description{
-This function converts an \code{ape} \code{DNAbin} into
+This function converts an \code{ape} \code{DNAbin} into a
 \code{DNAStringSet}.
 }
 \examples{

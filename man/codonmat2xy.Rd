@@ -7,7 +7,8 @@
 codonmat2xy(codonmat, threads = 1)
 }
 \arguments{
-\item{codonmat}{\code{codonmat} A [mandatory]}
+\item{codonmat}{\code{codon matrix} obtained via
+\code{\link[distSTRING]{dnastring2codonmat}} [mandatory]}
 
 \item{threads}{number of parallel threads [default: 1]}
 }
@@ -52,8 +53,10 @@ selection pressure at amino acid sites. \emph{Genetics.}
 \bold{155(1)}, 431-449.
 }
 \seealso{
-\code{\link[seqinr]{kaks}} \code{\link[distSTRING]{codonmat2pnps}}
+\code{\link[distSTRING]{dnastring2codonmat}}
+\code{\link[distSTRING]{codonmat2pnps}}
 \code{\link[distSTRING]{dnastring2kaks}}
+\code{\link[seqinr]{kaks}}
 }
 \author{
 Kristian K Ullrich

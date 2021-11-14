@@ -1,6 +1,6 @@
 #' @title dnabin2dnastring
 #' @name dnabin2dnastring
-#' @description This function converts an \code{ape} \code{DNAbin} into
+#' @description This function converts an \code{ape} \code{DNAbin} into a
 #' \code{DNAStringSet}.
 #' @param dnabin \code{ape} \code{DNAbin} [mandatory]
 #' @return An object of class \code{DNAStringSet}
@@ -20,6 +20,8 @@
 #' @author Kristian K Ullrich
 
 dnabin2dnastring <- function(dnabin){
+    stopifnot("Error: input needs to be a DNAbin"=
+        methods::is(dnabin, "DNAbin"))
     dna <- setNames(Biostrings::DNAStringSet(ape::as.alignment(dnabin)$seq),
         labels(dnabin))
     return(dna)

@@ -11,6 +11,9 @@ an object of class \code{matrix}
 \usage{
 data(AAMatrix)
 }
+\value{
+\code{score matrix}
+}
 \description{
 \code{getAAMatrix()}  from the \code{alakazam} package.
 }

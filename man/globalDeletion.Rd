@@ -7,7 +7,7 @@
 globalDeletion(dna)
 }
 \arguments{
-\item{dna}{\code{DNAStringSet}}
+\item{dna}{\code{DNAStringSet} [mandatory]}
 }
 \value{
 \code{DNAStringSet}

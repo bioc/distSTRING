@@ -4,7 +4,15 @@
 \alias{dnastring2dist}
 \title{dnastring2dist}
 \usage{
-dnastring2dist(dna, model = "IUPAC", threads = 1, score = NULL, ...)
+dnastring2dist(
+  dna,
+  model = "IUPAC",
+  threads = 1,
+  score = NULL,
+  mask = NULL,
+  region = NULL,
+  ...
+)
 }
 \arguments{
 \item{dna}{\code{DNAStringSet} [mandatory]}
@@ -14,8 +22,14 @@ dnastring2dist(dna, model = "IUPAC", threads = 1, score = NULL, ...)
 
 \item{threads}{number of parallel threads [default: 1]}
 
-\item{score}{\code{scoringMatrix} use scoring matrix to calculate
+\item{score}{\code{score matrix} use score matrix to calculate
 distances [default: NULL]}
+
+\item{mask}{\code{IRanges} object indicating masked sites
+[default: NULL]}
+
+\item{region}{\code{IRanges} object indicating region to use for dist
+calculation. Default is null, meaning all sites are used [default: NULL]}
 
 \item{...}{other \code{ape::dist.dna} parameters
 (see \code{\link[ape]{dist.dna}})}
@@ -40,6 +54,15 @@ data("woodmouse", package="ape")
 woodmouse |> dnabin2dnastring() |> dnastring2dist()
 #dnastring2dist(hiv, model = "IUPAC", threads = 2)
 hiv |> dnastring2dist(model = "IUPAC", threads = 2)
+## create mask
+mask1 <- IRanges::IRanges(start=c(1,61,121), end=c(30,90,150))
+## use mask
+hiv |> dnastring2dist(model="IUPAC", mask=mask1)
+## use region
+region1 <- IRanges::IRanges(start=c(1,139), end=c(75,225))
+hiv |> dnastring2dist(model="IUPAC", region=region1)
+## use mask and region
+hiv |> dnastring2dist(model="IUPAC", mask=mask1, region=region1)
 }
 \seealso{
 \code{\link[ape]{dist.dna}}

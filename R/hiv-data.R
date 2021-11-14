@@ -13,4 +13,5 @@
 #' @keywords datasets
 #' @examples
 #' data("hiv", package="distSTRING")
+
 "hiv"

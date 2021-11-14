@@ -29,7 +29,7 @@
 
 dnastring2aln <- function(dna){
     stopifnot("Error: input needs to be a DNAStringSet"=
-        is(dna, "DNAStringSet"))
+        methods::is(dna, "DNAStringSet"))
     alignment.nb <- length(dna)
     alignment.nam <- names(dna)
     alignment.seq <- tolower(as.character(dna))

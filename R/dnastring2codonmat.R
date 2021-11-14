@@ -1,6 +1,6 @@
 #' @title dnastring2codonmat
 #' @name dnastring2codonmat
-#' @description This function converts a \code{DNAStringSet} into an
+#' @description This function converts a \code{DNAStringSet} into a
 #' \code{codon matrix}.
 #' @param cds \code{DNAStringSet} [mandatory]
 #' @param shorten shorten all sequences to multiple of three [default: FALSE]
@@ -38,7 +38,7 @@
 
 dnastring2codonmat <- function(cds, shorten = FALSE, frame = 1, framelist=NULL){
     stopifnot("Error: input needs to be a DNAStringSet"=
-        is(cds, "DNAStringSet"))
+        methods::is(cds, "DNAStringSet"))
     stopifnot("Error: input needs to be a Alignment of equal width"=
         length(unique(Biostrings::width(cds)))==1)
     stopifnot("Error: frame needs to be 1 or 2 or 3"= frame %in% c(1, 2, 3))

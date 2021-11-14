@@ -9,9 +9,9 @@
 #' RNAStringSet AAStringSet BStringSet
 #' @param x \code{DNAStringSet}, \code{RNAString}, \code{AAString},
 #' \code{BString}, \code{DNAStringSet}, \code{RNAStringSet},
-#' \code{AAStringSet}, \code{BStringSet}
-#' @param s start vector
-#' @param e end vector
+#' \code{AAStringSet}, \code{BStringSet} [mandatory]
+#' @param s start vector [mandatory]
+#' @param e end vector [mandatory]
 #' @examples
 #' ## define two cds sequences
 #' cds1 <- Biostrings::DNAString("ATGCAACATTGC")
@@ -22,6 +22,7 @@
 #' @seealso \link[XVector]{subseq}
 #' @export subString
 #' @author Kristian K Ullrich
+
 subString<-function(x, s, e){
     x.class<-class(x)[1]
     se.matrix<-cbind(s, e)

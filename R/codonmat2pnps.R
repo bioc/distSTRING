@@ -2,7 +2,7 @@
 #' @name codonmat2pnps
 #' @description This function calculates pn/ps according to \emph{Nei and
 #' Gojobori (1986)}.
-#' @param codonmat \code{codonmat} A codonmat of two columns to be
+#' @param codonmat \code{codon matrix} of two columns to be
 #' compared [mandatory]
 #' @return An object of class \code{pnps} which is a list with the following
 #' components:\cr

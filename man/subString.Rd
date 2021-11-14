@@ -9,11 +9,11 @@ subString(x, s, e)
 \arguments{
 \item{x}{\code{DNAStringSet}, \code{RNAString}, \code{AAString},
 \code{BString}, \code{DNAStringSet}, \code{RNAStringSet},
-\code{AAStringSet}, \code{BStringSet}}
+\code{AAStringSet}, \code{BStringSet} [mandatory]}
 
-\item{s}{start vector}
+\item{s}{start vector [mandatory]}
 
-\item{e}{end vector}
+\item{e}{end vector [mandatory]}
 }
 \value{
 subsequence of an \code{Biostrings} object

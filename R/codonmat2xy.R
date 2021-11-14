@@ -3,7 +3,8 @@
 #' @description This function calculates average behavior of each codon for all
 #' pairwise comparisons for indels, syn, and nonsyn mutations according to
 #' \emph{Nei and Gojobori (1986)}.
-#' @param codonmat \code{codonmat} A [mandatory]
+#' @param codonmat \code{codon matrix} obtained via
+#' \code{\link[distSTRING]{dnastring2codonmat}} [mandatory]
 #' @param threads number of parallel threads [default: 1]
 #' @return A \code{data.frame} object with the following components:\cr
 #' \code{Codon} Codon index\cr
@@ -28,8 +29,10 @@
 #' @importFrom doParallel registerDoParallel
 #' @importFrom dplyr group_by filter count left_join summarise mutate
 #' @importFrom rlang .data
-#' @seealso \code{\link[seqinr]{kaks}} \code{\link[distSTRING]{codonmat2pnps}}
+#' @seealso \code{\link[distSTRING]{dnastring2codonmat}}
+#' \code{\link[distSTRING]{codonmat2pnps}}
 #' \code{\link[distSTRING]{dnastring2kaks}}
+#' \code{\link[seqinr]{kaks}}
 #' @references Nei and Gojobori. (1986) Simple methods for estimating the
 #' numbers of synonymous and nonsynonymous nucleotide substitutions.
 #' \emph{Mol. Biol. Evol.}, \bold{3(5)}, 418-426.

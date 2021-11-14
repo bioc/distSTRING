@@ -1,6 +1,7 @@
 #' @title AAMatrix-data
 #' @name AAMatrix-data
 #' @description \code{getAAMatrix()}  from the \code{alakazam} package.
+#' @return \code{score matrix}
 #' @references Gupta N, Vander Heiden J, Uduman M, Gadala-Maria D, Yaari G,
 #' Kleinstein S (2015) Change-O: a toolkit for analyzing large-scale B cell
 #' immunoglobulin repertoire sequencing data. \emph{Bioinformatics.}
@@ -11,4 +12,5 @@
 #' @keywords datasets
 #' @examples
 #' data("AAMatrix", package="distSTRING")
+
 "AAMatrix"

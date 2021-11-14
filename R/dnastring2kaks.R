@@ -3,10 +3,10 @@
 #' @description This function calculates Ka/Ks (pN/pS; according to
 #' \emph{Li (1993)} or \emph{Nei and Gojobori (1986)} for all combinations of
 #' a \code{DNAStringSet}.
-#' @param cds \code{DNAStringSet} A [mandatory]
+#' @param cds \code{DNAStringSet} coding sequence alignment [mandatory]
 #' @param model specify codon model either "Li" or "NG86" [default: Li]
 #' @param threads number of parallel threads [default: 1]
-#' @return A data.frame of \code{KaKs} values
+#' @return A \code{data.frame} of \code{KaKs} values
 #' @importFrom Biostrings DNAString DNAStringSet AAString AAStringSet
 #' readDNAStringSet readAAStringSet writeXStringSet width subseq
 #' pairwiseAlignment
@@ -41,6 +41,8 @@
 dnastring2kaks <- function(cds,
     model = "Li",
     threads = 1){
+    stopifnot("Error: input needs to be a DNAStringSet"=
+        methods::is(cds, "DNAStringSet"))
     Comp1 <- FALSE
     Comp2 <- FALSE
     stopifnot("Error: either choose model 'Li' or 'NG86'"=

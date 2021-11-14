@@ -7,14 +7,14 @@
 dnastring2kaks(cds, model = "Li", threads = 1)
 }
 \arguments{
-\item{cds}{\code{DNAStringSet} A [mandatory]}
+\item{cds}{\code{DNAStringSet} coding sequence alignment [mandatory]}
 
 \item{model}{specify codon model either "Li" or "NG86" [default: Li]}
 
 \item{threads}{number of parallel threads [default: 1]}
 }
 \value{
-A data.frame of \code{KaKs} values
+A \code{data.frame} of \code{KaKs} values
 }
 \description{
 This function calculates Ka/Ks (pN/pS; according to

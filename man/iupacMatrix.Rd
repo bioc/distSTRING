@@ -7,11 +7,11 @@
 iupacMatrix()
 }
 \value{
-\code{matrix}
+\code{score matrix}
 }
 \description{
 This function creates a \code{iupacMatrix} object to be used
-with the \code{distSTRING} function. By default,the iupac matrix is
+with the \code{distSTRING} function. By default, the \code{iupac matrix} is
 defined as literal distance obtained from \code{Chang et al. 2017}.
 (see \url{https://link.springer.com/article/10.1007/s00335-017-9704-9})
 }

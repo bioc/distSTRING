@@ -28,7 +28,7 @@
 #' @author Kristian K Ullrich
 
 aastring2aln <- function(aa){
-    stopifnot("Error: input needs to be a AAStringSet"=
+    stopifnot("Error: input needs to be an AAStringSet"=
         methods::is(aa, "AAStringSet"))
     alignment.nb <- length(aa)
     alignment.nam <- names(aa)

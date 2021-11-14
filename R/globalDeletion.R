@@ -4,7 +4,7 @@
 #' sites containing any gaps ("-", "+", ".") or missing ("N") sites.
 #' @return \code{DNAStringSet}
 #' @importFrom Biostrings consensusMatrix
-#' @param dna \code{DNAStringSet}
+#' @param dna \code{DNAStringSet} [mandatory]
 #' @examples
 #' ## define two cds sequences
 #' cds1 <- Biostrings::DNAString("ATGCAACATTGC")
@@ -14,12 +14,15 @@
 #' globalDeletion(cds1.cds2.aln)
 #' @export globalDeletion
 #' @author Kristian K Ullrich
+
 globalDeletion<-function(dna){
+    stopifnot("Error: input needs to be a DNAStringSet"=
+        methods::is(dna, "DNAStringSet"))
     cM <- Biostrings::consensusMatrix(dna)
     globalDeletionSites <- which(apply(cM, 2, function(x) sum(x[15:18]) >= 1))
     if(length(globalDeletionSites) == 0){
         return(dna)
     }
     return(distSTRING::dnabin2dnastring(
-        distSTRING::dnastring2dnabin(dna)[, -globalDeletionSites]))
+        distSTRING::dnastring2dnabin(dna)[, -(globalDeletionSites)]))
 }

@@ -26,7 +26,7 @@ sequences\cr
 or \code{NA} if there are no comments
 }
 \description{
-This function converts a \code{DNAStringSet} into an
+This function converts a \code{DNAStringSet} into a
 \code{codon matrix}.
 }
 \examples{

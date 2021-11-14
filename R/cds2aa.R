@@ -35,8 +35,8 @@
 
 cds2aa <- function(cds, shorten=FALSE, frame=1, framelist=NULL,
     genetic.code=NULL){
-    stopifnot("Error: input needs to be a DNAStringSet"= is(cds,
-        "DNAStringSet"))
+    stopifnot("Error: input needs to be a DNAStringSet"=
+                  methods::is(cds, "DNAStringSet"))
     stopifnot("Error: frame needs to be 1 or 2 or 3"= frame %in% c(1, 2, 3))
     if(!is.null(framelist)){
         stopifnot("Error: framelist needs to be of equal length as cds"=
